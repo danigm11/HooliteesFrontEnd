@@ -7,10 +7,10 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form" action="/examples/actions/confirmation.php" method="post">
+		<form class="form" [formGroup]="myForm" (ngSubmit)="uploadCredentials()">
 			<h2>Inicia sesión</h2>
-			<input type="text" class="form-inputs" placeholder="Usuario" required>
-			<input type="password" class="form-inputs" placeholder="Contraseña" required>
+			<input type="text" formControlName="email" class="form-inputs" placeholder="E-mail">
+			<input type="password" class="form-inputs" placeholder="Contraseña">
 			<input type="submit" class="botonInicio" value="Iniciar sesión">
 		</form>
   <div class="registro" [routerLink]="'/registro'">No tienes cuenta? Regístrate!</div>
