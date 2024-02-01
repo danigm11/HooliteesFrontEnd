@@ -1,1 +1,19 @@
-<p>login works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Formulario de login</title>
+</head>
+<body>
+	<div class="container">
+		<form class="form" action="/examples/actions/confirmation.php" method="post">
+			<h2>Inicia sesión</h2>
+			<input type="text" class="form-inputs" placeholder="Usuario" required>
+			<input type="password" class="form-inputs" placeholder="Contraseña" required>
+			<input type="submit" class="botonInicio" value="Iniciar sesión">
+		</form>
+  <div class="registro" [routerLink]="'/registro'">No tienes cuenta? Regístrate!</div>
+</div>
+</body>
+</html>

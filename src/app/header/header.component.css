@@ -10,11 +10,11 @@
   width: 100%;
   height: 5em;
   background-color: rgb(219, 73, 73);
-  border-radius: 10px;
   align-items: center;
   color: white;
   padding: 1px;
   padding-left: 5px;
+  margin-top: -3%;
 }
 
 .box {
@@ -27,6 +27,7 @@
   border-radius: 10px;
   cursor: pointer;
   background-color: #e62626;
+  margin-left: 1%;
 }
 
 .botones-header {
@@ -56,10 +57,13 @@
   right: -5px;
   width: 15px;
   height: 15px;
-  background-color: red;
+  background-color: rgb(29, 96, 210);
   color: white;
   border-radius: 50%;
   font-size: 10px;
   text-align: center;
   line-height: 15px;
+}
+.logo-image{
+  margin-top: -2%;
 }
