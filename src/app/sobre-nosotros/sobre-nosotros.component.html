@@ -1,0 +1,40 @@
+<div>
+    <h2>Nuestro Equipo</h2>
+    <div>
+      <img [src]="teamMember1.image" alt="{{ teamMember1.name }};">
+      <h3>{{ teamMember1.name }}</h3>
+      <p>{{ teamMember1.description }}</p>
+    </div>
+  
+    <div>
+      <img [src]="teamMember2.image" alt="{{ teamMember2.name }}">
+      <h3>{{ teamMember2.name }}</h3>
+      <p>{{ teamMember2.description }}</p>
+    </div>
+   
+    <div>
+        <img [src]="teamMember3.image" alt="{{ teamMember3.name }}">
+        <h3>{{ teamMember3.name }}</h3>
+        <p>{{ teamMember3.description }}</p>
+      </div>
+      
+      <div>
+        <img [src]="teamMember4.image" alt="{{ teamMember4.name }}">
+        <h3>{{ teamMember4.name }}</h3>
+        <p>{{ teamMember4.description }}</p>
+      </div>
+    
+      <h2>Misión, Visión y Valores</h2>
+      <div>
+        <p> <img src="../../assets/images/mision.png"><strong>Misión:</strong> {{ missionVisionValues.mission }}</p>
+        <p> <img src="../../assets/images/vision.png" alt=""><strong>Visión:</strong> {{ missionVisionValues.vision }}</p>
+        <p> <img src="../../assets/images/values.png" alt=""><strong>Valores:</strong> {{ missionVisionValues.values.join(', ') }}</p>
+      </div>
+    
+      <h2>Contacto</h2>
+    <div>
+      <p> <img src="../../assets/images/phone.png"><strong>Teléfono:</strong> {{ contactInfo.phone }}</p>
+      <p> <img src="../../assets/images/address.png"><strong>Dirección:</strong> {{ contactInfo.address }}</p>
+    </div>
+  </div>
+  

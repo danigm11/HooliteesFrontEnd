@@ -1,0 +1,14 @@
+img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  } 
+p {
+    text-align: justify;
+}
+
+div p img {
+    margin-right: 10px;
+    max-width: 24px;
+    height: auto; 
+  }
