@@ -39,7 +39,7 @@
   margin-right: 3%;
 }
 
-.login-image {
+.login-image, .cart-image{
   width: 4vw;
   height: 4vw;
   min-width: 25px;
@@ -47,7 +47,14 @@
   margin: 5px;
   cursor: pointer;
 }
-
+.login-image:hover{
+  background-color: white;
+  border-radius: 100%;
+}
+.cart-image:hover{
+  width: 4.5vw;
+  height: 4.5vw;
+}
 .carrito {
   position: relative;
   cursor: pointer;
