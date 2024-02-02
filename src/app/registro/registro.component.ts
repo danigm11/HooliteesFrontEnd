@@ -23,6 +23,7 @@ export class RegistroComponent {
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
       direccion: ['', Validators.required],
     });
   }
@@ -32,13 +33,18 @@ export class RegistroComponent {
     formData.append('nombre', this.myForm.get('nombre')?.value);
     formData.append('email', this.myForm.get('email')?.value);
     formData.append('password', this.myForm.get('password')?.value);
+    formData.append('confirmPassword', this.myForm.get('confirmPassword')?.value);
     formData.append('direccion', this.myForm.get('direccion')?.value);
+
+    if(this.myForm.get('confirmPassword')?.value == this.myForm.get('password')?.value){
   
     const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/signup/`, formData);
     await lastValueFrom(request$);
   
     alert('Registro exitoso.');
-    
+    } else {
+      alert('Registro incorrecto, compruebe su contraseña');
+    }
   }
   
   /*async updateImageList() {
