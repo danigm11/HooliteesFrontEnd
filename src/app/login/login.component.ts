@@ -30,16 +30,20 @@ export class LoginComponent {
     formData.append('email', this.myForm.get('email')?.value);
     formData.append('password', this.myForm.get('password')?.value);
 
-    const request$ = this.httpClient.post<boolean>(`${this.API_URL}api/userlist/`, formData);
+    const request$ = this.httpClient.post<boolean>(`${this.API_URL}api/User/login/`, formData);
     //const event: any = await lastValueFrom(request$);
-  const edxist = await lastValueFrom(request$);
-
-    alert('Sesión iniciada con éxito');
+    const userExists = await lastValueFrom(request$);
+    if(userExists){
+      alert('Sesión iniciada con éxito');
+    }else{
+      alert('E-mail o contraseña incorrecto/s');
+    }
+    
   }
-  async updateImageList() {
+  /*async updateImageList() {
     const request$ = this.httpClient.get<User[]>(`${this.API_URL}api/userlist/`);
     this.users = await lastValueFrom(request$);
-  }
+  }*/
 }
 interface User {
   email: string;

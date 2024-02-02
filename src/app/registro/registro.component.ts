@@ -34,17 +34,17 @@ export class RegistroComponent {
     formData.append('password', this.myForm.get('password')?.value);
     formData.append('direccion', this.myForm.get('direccion')?.value);
   
-    const request$ = this.httpClient.post<boolean>(`${this.API_URL}api/registro/`, formData);
+    const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/signup/`, formData);
     await lastValueFrom(request$);
   
     alert('Registro exitoso.');
     
   }
   
-  async updateImageList() {
+  /*async updateImageList() {
     const request$ = this.httpClient.get<User[]>(`${this.API_URL}api/userlist/`);
     this.users = await lastValueFrom(request$);
-  }
+  }*/
 }
 interface User {
   email: string;
