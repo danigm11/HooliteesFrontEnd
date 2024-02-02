@@ -30,11 +30,10 @@ export class RegistroComponent {
 
   async uploadRegister() {
     const formData = new FormData();
-    formData.append('nombre', this.myForm.get('nombre')?.value);
+    formData.append('name', this.myForm.get('nombre')?.value);
     formData.append('email', this.myForm.get('email')?.value);
     formData.append('password', this.myForm.get('password')?.value);
-    formData.append('confirmPassword', this.myForm.get('confirmPassword')?.value);
-    formData.append('direccion', this.myForm.get('direccion')?.value);
+    formData.append('address', this.myForm.get('direccion')?.value);
 
     if(this.myForm.get('confirmPassword')?.value == this.myForm.get('password')?.value){
   
