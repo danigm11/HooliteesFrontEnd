@@ -1,29 +1,12 @@
 <div>
-    <h2>Nuestro Equipo</h2>
-    <div>
-      <img [src]="teamMember1.image" alt="{{ teamMember1.name }};">
-      <h3>{{ teamMember1.name }}</h3>
-      <p>{{ teamMember1.description }}</p>
-    </div>
-  
-    <div>
-      <img [src]="teamMember2.image" alt="{{ teamMember2.name }}">
-      <h3>{{ teamMember2.name }}</h3>
-      <p>{{ teamMember2.description }}</p>
-    </div>
-   
-    <div>
-        <img [src]="teamMember3.image" alt="{{ teamMember3.name }}">
-        <h3>{{ teamMember3.name }}</h3>
-        <p>{{ teamMember3.description }}</p>
-      </div>
-      
+    <h2>¿Quiénes somos?</h2>
+    <div *ngFor="let member of teamMembers; let odd = odd" class="team-member-container float-{{ odd ? 'left' : 'right' }}">
+      <img [src]="member.image" alt="{{ member.name }}">
       <div>
-        <img [src]="teamMember4.image" alt="{{ teamMember4.name }}">
-        <h3>{{ teamMember4.name }}</h3>
-        <p>{{ teamMember4.description }}</p>
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.description }}</p>
       </div>
-    
+    </div>
       <h2>Misión, Visión y Valores</h2>
       <div>
         <p> <img src="../../assets/images/mision.png"><strong>Misión:</strong> {{ missionVisionValues.mission }}</p>
