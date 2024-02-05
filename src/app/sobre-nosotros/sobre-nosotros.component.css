@@ -1,0 +1,46 @@
+img {
+    width: 100%;
+    max-width: 15%;
+    height: auto;
+  } 
+p {
+    text-align: justify;
+}
+
+div p img {
+    margin-right: 1%;
+    max-width: 2%;
+    height: auto; 
+  }
+
+h2 {
+  text-align: center;
+}
+.team-member-container {
+  border: 2px solid #000000;
+  border-radius: 25px;
+  overflow: hidden; 
+  margin-bottom: 20px; 
+}
+
+.team-member-container img {
+  float: left; 
+  margin-right: 10px; 
+  border-radius: 25px; 
+}
+
+.team-member-container h3,
+.team-member-container p {
+  margin: 0; 
+  text-align: justify;
+}
+
+.float-left {
+  clear: left;
+}
+
+.float-right {
+  clear: right;
+}
+
+

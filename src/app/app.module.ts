@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 
@@ -21,7 +22,8 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     RegistroComponent,
     HeaderComponent,
     CarritoComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    SobreNosotrosComponent
   ],
   imports: [
     BrowserModule,
