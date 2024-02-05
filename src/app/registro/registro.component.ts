@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-registro',
@@ -18,7 +20,7 @@ export class RegistroComponent {
 
   users: User[] = [];
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient,private router: Router) {
     this.myForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -41,6 +43,7 @@ export class RegistroComponent {
     await lastValueFrom(request$);
   
     alert('Registro exitoso.');
+    this.router.navigate(['/login']);
     } else {
       alert('Registro incorrecto, compruebe su contraseña');
     }
