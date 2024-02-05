@@ -1,0 +1,23 @@
+<div>
+    <h2>¿Quiénes somos?</h2>
+    <div *ngFor="let member of teamMembers; let odd = odd" class="team-member-container float-{{ odd ? 'left' : 'right' }}">
+      <img [src]="member.image" alt="{{ member.name }}">
+      <div>
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.description }}</p>
+      </div>
+    </div>
+      <h2>Misión, Visión y Valores</h2>
+      <div>
+        <p> <img src="../../assets/images/mision.png"><strong>Misión:</strong> {{ missionVisionValues.mission }}</p>
+        <p> <img src="../../assets/images/vision.png" alt=""><strong>Visión:</strong> {{ missionVisionValues.vision }}</p>
+        <p> <img src="../../assets/images/values.png" alt=""><strong>Valores:</strong> {{ missionVisionValues.values.join(', ') }}</p>
+      </div>
+    
+      <h2>Contacto</h2>
+    <div>
+      <p> <img src="../../assets/images/phone.png"><strong>Teléfono:</strong> {{ contactInfo.phone }}</p>
+      <p> <img src="../../assets/images/address.png"><strong>Dirección:</strong> {{ contactInfo.address }}</p>
+    </div>
+  </div>
+  
