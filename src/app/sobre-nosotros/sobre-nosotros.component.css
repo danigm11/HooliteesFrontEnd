@@ -1,6 +1,6 @@
 img {
     width: 100%;
-    max-width: 200px;
+    max-width: 15%;
     height: auto;
   } 
 p {
@@ -8,8 +8,8 @@ p {
 }
 
 div p img {
-    margin-right: 10px;
-    max-width: 24px;
+    margin-right: 1%;
+    max-width: 2%;
     height: auto; 
   }
 
@@ -36,7 +36,11 @@ h2 {
 }
 
 .float-left {
-  clear: left; 
+  clear: left;
+}
+
+.float-right {
+  clear: right;
 }
 
 
