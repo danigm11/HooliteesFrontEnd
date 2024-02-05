@@ -27,19 +27,19 @@ export class LoginComponent {
 
  async uploadCredentials() {
     const formData = new FormData();
+    const options: any = {responseType:"text"};
     formData.append('email', this.myForm.get('email')?.value);
     formData.append('password', this.myForm.get('password')?.value);
+    try{
 
-    const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData);
-    //const event: any = await lastValueFrom(request$);
-    const userExists = await lastValueFrom(request$);
+    const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData,options);
+    const event: any = await lastValueFrom(request$);
     
-    if(userExists){
-      alert('Sesión iniciada con éxito');
-    }else{
+    alert('Sesión iniciada con éxito');
+    console.log(event);
+    }catch(error){
       alert('E-mail o contraseña incorrecto/s');
-    }
-    
+    } 
   }
   /*async updateImageList() {
     const request$ = this.httpClient.get<User[]>(`${this.API_URL}api/userlist/`);
