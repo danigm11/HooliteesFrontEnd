@@ -30,9 +30,10 @@ export class LoginComponent {
     formData.append('email', this.myForm.get('email')?.value);
     formData.append('password', this.myForm.get('password')?.value);
 
-    const request$ = this.httpClient.post<boolean>(`${this.API_URL}api/User/login/`, formData);
+    const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData);
     //const event: any = await lastValueFrom(request$);
     const userExists = await lastValueFrom(request$);
+    
     if(userExists){
       alert('Sesión iniciada con éxito');
     }else{

@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+
+}
+.listaCarrito{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  border: solid 2px black;
+
+}
+
+.divConfirmar{
+  width: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: solid 2px black;
+  border-radius: 100%;
+  height: fit-content;
+}
+
+.imagenProducto{
+  margin-top: 5px;
+  width: 40%;
+  height: 40%;
+  border: 2px solid;
+}
+.cantidad{
+  width: 25%;
+}

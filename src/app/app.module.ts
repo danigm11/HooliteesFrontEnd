@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CarritoComponent } from './carrito/carrito.component';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     InicioComponent,
     LoginComponent,
     RegistroComponent,
-    HeaderComponent
+    HeaderComponent,
+    CarritoComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,
