@@ -9,8 +9,7 @@
   background-color: rgb(219, 73, 73);
   align-items: center;
   color: white;
-  padding: 1px;
-  padding-left: 5px;
+
 }
 
 .box {
@@ -51,7 +50,7 @@
   background-color: white;
   border-radius: 100%;
 }
-.cart-image:hover{
+.login-image:hover,.cart-image:hover{
   width: 4.5vw;
   height: 4.5vw;
 }

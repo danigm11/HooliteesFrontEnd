@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-  background-color: rgba(219, 219, 219, 0.804);
+  /*background-color: rgba(219, 219, 219, 0.804);*/
+  background-color: white;
   font-family: Arial, sans-serif;
 }

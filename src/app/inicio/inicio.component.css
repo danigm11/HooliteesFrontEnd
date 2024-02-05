@@ -1,0 +1,18 @@
+section{
+  display: flex;
+  width: 100%;
+  height: 20%;
+}
+section img{
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: .8;
+  transition: .5s ease;
+}
+section img:hover{
+  cursor: crosshair;
+  width: 10%;
+  opacity: 1;
+  filter: contrast(120%);
+}
