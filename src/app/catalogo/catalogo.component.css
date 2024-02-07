@@ -1,0 +1,9 @@
+.NoStock{
+  color: red;
+}
+.HayStock{
+  color:green;
+}
+.imagenProducto{
+  width: 15vw;
+}
