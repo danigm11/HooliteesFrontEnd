@@ -1,8 +1,10 @@
 
 <div *ngFor="let p of listaProdcutos">
-  <img class="imagenProducto" src="assets\images\{{p.image}}" alt="foto de {{p.name}}">
-  <p>{{ p.name }}</p>
-  
-  <p *ngIf="p.stock>0" class="HayStock">{{p.price}}</p>
-  <p *ngIf="p.stock==0" class="NoStock">{{p.price}}</p>
+  <div [routerLink]="'/detalle/'+p.id">
+    <img class="imagenProducto" src="assets\images\{{p.image}}" alt="foto de {{p.name}}">
+    <p>{{ p.name }}</p>
+    
+    <p *ngIf="p.stock>0" class="HayStock">{{p.price}}</p>
+    <p *ngIf="p.stock==0" class="NoStock">{{p.price}}</p>
+  </div>
 </div>

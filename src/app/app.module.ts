@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     HeaderComponent,
     CarritoComponent,
     CatalogoComponent,
-    SobreNosotrosComponent
+    SobreNosotrosComponent,
+    DetalleProductoComponent
   ],
   imports: [
     BrowserModule,
