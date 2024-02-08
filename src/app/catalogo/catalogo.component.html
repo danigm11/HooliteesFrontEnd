@@ -1,10 +1,19 @@
+<div class="divBuscador">
+<input class="buscador" type="text" placeholder="🔍︎" [(ngModel)]="filtroNombre" (keyup)="aplicarFiltros()"/>
 
-<div *ngFor="let p of listaProdcutos">
-  <div [routerLink]="'/detalle/'+p.id">
-    <img class="imagenProducto" src="assets\images\{{p.image}}" alt="foto de {{p.name}}">
-    <p>{{ p.name }}</p>
-    
-    <p *ngIf="p.stock>0" class="HayStock">{{p.price}}</p>
-    <p *ngIf="p.stock==0" class="NoStock">{{p.price}}</p>
+  <select (change)="ordenar();orden=!orden">
+    <option value="A-Z" >A-Z</option>
+    <option value="€">€</option>
+  </select>
+</div>
+<div class="container">
+  <div *ngFor="let p of listaMostrada">
+    <div [routerLink]="'/detalle/'+p.id">
+      <img class="imagenProducto" [src]="API_URL + p.image" alt="foto de {{p.name}}">
+      <p>{{ p.name }}</p>
+      
+      <p *ngIf="p.stock>0" class="HayStock">{{p.price}}€</p>
+      <p *ngIf="p.stock==0" class="NoStock">{{p.price}}€</p>
+    </div>
   </div>
 </div>
