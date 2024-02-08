@@ -16,6 +16,7 @@ export class CatalogoComponent implements OnInit{
   ngOnInit(): void {
     this.servicioService.getProducts().then(products => {
       this.listaMostrada = products;
+      this.listaProdcutos=this.listaMostrada;
       this.ordenarNombre()
     });
   }
