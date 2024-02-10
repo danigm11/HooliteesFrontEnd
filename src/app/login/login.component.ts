@@ -22,7 +22,8 @@ export class LoginComponent {
   constructor(private httpClient: HttpClient,private formBuilder: FormBuilder,private router: Router) {
     this.myForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      recordar: ['',]
     });
   }
 
@@ -37,16 +38,26 @@ export class LoginComponent {
       const event: any = await lastValueFrom(request$);
       
       alert('Sesión iniciada con éxito');
-      this.router.navigate(['/']);
       console.log(event);
+      if(this.myForm.get('recordar')?.value){
+        this.setLocal(event);
+      }else{
+        this.setSession(event);
+      }
+      
+      this.router.navigate(['/']);
     }catch(error){
       alert('E-mail o contraseña incorrecto/s');
     } 
   }
-  /*async updateImageList() {
-    const request$ = this.httpClient.get<User[]>(`${this.API_URL}api/userlist/`);
-    this.users = await lastValueFrom(request$);
-  }*/
+  setSession(event: string){
+    sessionStorage.setItem("JWT",event);
+    sessionStorage.setItem("ID","1");
+  }
+  setLocal(event: string){
+    localStorage.setItem("JWT",event);
+    localStorage.setItem("ID","1");
+  }
 }
 interface User {
   email: string;
