@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from './model/Product';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { ProductCarrito } from './model/ProductCarrito';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,19 @@ export class ServicioService {
       return products;
     } catch(error) {
       alert('Seguramente te hayas olvidado de ejecutar la base de datos');
+      console.log(error);
+      return [];
+    }
+  }
+
+  async getProductosCarrito(idUser: number): Promise<ProductCarrito[]>{
+    try {
+      const request$ = this.httpClient.get<ProductCarrito[]>(`${this.API_URL}api/Product/productsCarrito/`);
+      const products: ProductCarrito[] = await lastValueFrom(request$);
+      
+      return products;
+    } catch(error) {
+      alert('Mira la consola');
       console.log(error);
       return [];
     }
