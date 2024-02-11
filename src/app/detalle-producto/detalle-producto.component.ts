@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ServicioService } from '../servicio.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
@@ -14,9 +15,12 @@ export class DetalleProductoComponent implements OnInit{
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
-    private servicioService: ServicioService
+    private servicioService: ServicioService,
+    private formBuilder: FormBuilder
     ) {
-
+      this.myForm = this.formBuilder.group({
+        cantidad: ['',]
+      });
   }
   unsubs: Subscription | null = null;
 
@@ -30,6 +34,8 @@ export class DetalleProductoComponent implements OnInit{
   API_URL : string = 'https://localhost:7093/';
   productoDetalle: any;
   id: number=0;
+  myForm: FormGroup;
+  idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
 
   getProducto(){
     this.servicioService.getProducts().then(products => {
@@ -38,5 +44,19 @@ export class DetalleProductoComponent implements OnInit{
       );
       this.productoDetalle=products[0];
     });
+  }
+  async addCarrito(){
+    const formData = new FormData();
+    const options: any = {responseType:"text"};
+    formData.append('productId', this.id.toString());
+    formData.append('userId', this.idUser);
+    formData.append('quantity', this.myForm.get('cantidad')?.value);
+    try {
+      const request$ = this.httpClient.post<string>(`${this.API_URL}api/ShoppingCart/addtoshopcart/`, formData);
+      var event: any = await lastValueFrom(request$);
+      alert("Producto añadido al carrito")
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
