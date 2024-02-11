@@ -1,14 +1,18 @@
 <div class="container">
   <div class="listaCarrito">
-    <div *ngFor="let p of carritoUser; let i = index">
-      <img>
-      <img class="imagenProducto" [src]="API_URL + p.image" alt=""><br>
-      <b class="nombre">{{p.name}}</b>
-      <p class="precio">{{p.price}}€</p>
-      <div>
-      <a>Cantidad: </a>
-      <input type="number" class="cantidad" min="1" value={{productosCarrito[i].quantity}}>
+    <div *ngFor="let p of carritoUser; let i = index" class="cadaProducto">
+      <div class="item">
+        <img class="imagenProducto" [src]="API_URL + p.image" alt=""><br>
+        <b class="nombre">{{p.name}}</b>
+        <p class="precio">{{p.price}}€</p>
+        </div><div class="CantidadEliminar">
+          <div>
+        <a>Cantidad: </a>
+        <input type="number" class="cantidad" min="1" value={{productosCarrito[i].quantity}}>
       </div>
+        <div class="botonEliminar">
+      <button (click)="eliminarProducto(p.id)">Eliminar</button>
+    </div></div>
     </div>
   </div>
   <div class="divConfirmar">

@@ -19,7 +19,7 @@ export class DetalleProductoComponent implements OnInit{
     private formBuilder: FormBuilder
     ) {
       this.myForm = this.formBuilder.group({
-        cantidad: ['',]
+        cantidad: ['1',]
       });
   }
   unsubs: Subscription | null = null;

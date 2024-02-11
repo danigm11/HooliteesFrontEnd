@@ -4,6 +4,8 @@ import { ServicioService } from '../servicio.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Product } from '../model/Product';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -11,14 +13,18 @@ import { Product } from '../model/Product';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit{
-  constructor(private httpClient: HttpClient,private servicioService: ServicioService,private router: Router) {
-    }
+  constructor(private httpClient: HttpClient,private servicioService: ServicioService,private formBuilder: FormBuilder,private router: Router) {
+    this.myForm = this.formBuilder.group({
+        cantidad: []
+      });}
     ngOnInit(): void {
       this.getCarrito();
     }
+    myForm: FormGroup;
 
     API_URL : string = 'https://localhost:7093/';
     productosCarrito: ProductCarrito[] = [];
+    idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
     carritoUser: Product[]=[];
     precioTotal:number=0;
     counter:number=0;
@@ -52,6 +58,20 @@ export class CarritoComponent implements OnInit{
         this.precioTotal+=(products[0].price*this.productosCarrito[this.counter].quantity);
         this.counter++;
       });
+    }
+    async eliminarProducto(idProducto:number){
+      
+      const formData = new FormData();
+      formData.append('productId', idProducto.toString());
+      formData.append('userId', this.idUser);
+      try {
+        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/eliminarproductocarrito/`, formData);
+        window.location.reload();
+        await lastValueFrom(request$);
+        
+      } catch (error) {
+        console.log(error);
+      }
     }
     
   
