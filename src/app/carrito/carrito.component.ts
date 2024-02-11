@@ -58,6 +58,7 @@ export class CarritoComponent implements OnInit{
         );
         this.carritoUser.push(products[0]);
         this.precioTotal+=(products[0].price*this.productosCarrito[this.counter].quantity);
+        this.valoresSpinners.push(this.productosCarrito[this.counter].quantity);
         this.counter++;
       });
     }
@@ -83,6 +84,7 @@ export class CarritoComponent implements OnInit{
       formData.append('quantity', cantidad.toString());
       try {
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
+        window.location.reload();
         await lastValueFrom(request$);
 
       } catch (error) {
