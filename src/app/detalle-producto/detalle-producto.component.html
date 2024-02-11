@@ -1,5 +1,5 @@
 <div class="container">
-    <div [routerLink]="'/detalle/'+productoDetalle.id">
+    <div *ngIf="productoDetalle" [routerLink]="'/detalle/'+productoDetalle.id">
       <img class="imagenproductoDetalleroducto" [src]="API_URL + productoDetalle.image" alt="foto de {{productoDetalle.name}}">
       <p>{{ productoDetalle.name }}</p>
       <p>{{ productoDetalle.description }}</p>

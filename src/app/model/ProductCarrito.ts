@@ -1,5 +1,5 @@
-import { Product } from "./Product";
 export interface ProductCarrito{
-  producto: Product;
-  cantidad: number;
+  productId: number;
+  shoppingCartId: number;
+  quantity: number;
 }

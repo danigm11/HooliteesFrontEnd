@@ -28,7 +28,7 @@ export class ServicioService {
 
   async getProductosCarrito(idUser: number): Promise<ProductCarrito[]>{
     try {
-      const request$ = this.httpClient.get<ProductCarrito[]>(`${this.API_URL}api/Product/productsCarrito/`);
+      const request$ = this.httpClient.get<ProductCarrito[]>(`${this.API_URL}api/CartProduct/productosCarrito/`);
       const products: ProductCarrito[] = await lastValueFrom(request$);
       
       return products;

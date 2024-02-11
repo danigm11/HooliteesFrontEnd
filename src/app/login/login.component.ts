@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -35,14 +36,14 @@ export class LoginComponent {
 
     try{
       const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData,options);
-      const event: any = await lastValueFrom(request$);
+      var event: any = await lastValueFrom(request$);
       
       alert('Sesión iniciada con éxito');
-      console.log(event);
+      event=JSON.parse(event)
       if(this.myForm.get('recordar')?.value){
-        this.setLocal(event);
+        this.setLocal(event.stringToken,event.id);
       }else{
-        this.setSession(event);
+        this.setSession(event.stringToken,event.id);
       }
       
       this.router.navigate(['/']);
@@ -50,13 +51,13 @@ export class LoginComponent {
       alert('E-mail o contraseña incorrecto/s');
     } 
   }
-  setSession(event: string){
-    sessionStorage.setItem("JWT",event);
-    sessionStorage.setItem("ID","1");
+  setSession(token: string,id:string){
+    sessionStorage.setItem("JWT",token);
+    sessionStorage.setItem("ID",id);
   }
-  setLocal(event: string){
-    localStorage.setItem("JWT",event);
-    localStorage.setItem("ID","1");
+  setLocal(token: string,id:string){
+    localStorage.setItem("JWT",token);
+    localStorage.setItem("ID",id);
   }
 }
 interface User {
