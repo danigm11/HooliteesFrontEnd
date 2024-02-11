@@ -26,8 +26,10 @@ export class CarritoComponent implements OnInit{
     productosCarrito: ProductCarrito[] = [];
     idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
     carritoUser: Product[]=[];
+    valoresSpinners:number[]=[];
     precioTotal:number=0;
     counter:number=0;
+    valorSpinner:number=0;
     
     getCarrito() {
       const userIdString = localStorage.getItem("ID");
@@ -68,7 +70,21 @@ export class CarritoComponent implements OnInit{
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/eliminarproductocarrito/`, formData);
         window.location.reload();
         await lastValueFrom(request$);
-        
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async actualizarCantidad(idProducto:number,cantidad:number){
+      const formData = new FormData();
+      formData.append('productId', idProducto.toString());
+      formData.append('userId', this.idUser);
+      formData.append('quantity', cantidad.toString());
+      try {
+        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
+        await lastValueFrom(request$);
+
       } catch (error) {
         console.log(error);
       }
