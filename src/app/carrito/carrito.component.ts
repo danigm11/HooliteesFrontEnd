@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Product } from '../model/Product';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { lastValueFrom } from 'rxjs';
+import { delay, lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -84,12 +84,19 @@ export class CarritoComponent implements OnInit{
       formData.append('quantity', cantidad.toString());
       try {
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
-        window.location.reload();
+        /*setTimeout(() => {}, 1000000);
+        window.location.reload();*/
+        this.reloadWindowAfterDelay();
         await lastValueFrom(request$);
 
       } catch (error) {
         console.log(error);
       }
+    }
+    reloadWindowAfterDelay() {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     }
     
   
