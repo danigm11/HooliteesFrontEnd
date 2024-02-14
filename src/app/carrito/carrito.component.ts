@@ -32,7 +32,10 @@ export class CarritoComponent implements OnInit{
     valorSpinner:number=0;
     
     getCarrito() {
-      const userIdString = localStorage.getItem("ID");
+      var userIdString = localStorage.getItem("ID");
+      if(!userIdString){
+        userIdString = sessionStorage.getItem("ID");
+      }
       if (userIdString) {
         const userId = Number.parseInt(userIdString);
         this.servicioService.getProductosCarrito(userId).then(products => {
