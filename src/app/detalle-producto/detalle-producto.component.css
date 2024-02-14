@@ -1,5 +1,28 @@
-.container{
-  display:flex;
-  justify-content: space-around;
+.container {
+  display: flex;
   align-items: center;
+  background-color: #ff6161;
+  background-size: auto;
 }
+.NoStock{
+  color: red;
+}
+.HayStock{
+  color:green;
+}
+.imagenproductoDetalle {
+  width: 70%;
+  margin-right: 20px; 
+}
+
+.container > div {
+  width: 70%;
+}
+.cartimage {
+  width: 5%;
+}
+.container > div > p {
+ white-space: pre-line;
+  margin: 0;
+}
+
