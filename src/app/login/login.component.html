@@ -11,7 +11,10 @@
 			<h2>Inicia sesión</h2>
 			<input type="text" formControlName="email" class="form-inputs" placeholder="E-mail">
 			<input type="password" formControlName="password" class="form-inputs" placeholder="Contraseña">
-			<input type="submit" class="botonInicio" value="Iniciar sesión">
+      <div style="display: flex;">
+        <input type="checkbox" formControlName="recordar" class="form-inputs"><a>Recordar credenciales?</a>
+      </div>
+      <input type="submit" class="botonInicio" value="Iniciar sesión">
 		</form>
   <div class="registro" [routerLink]="'/registro'">No tienes cuenta? Regístrate!</div>
 </div>

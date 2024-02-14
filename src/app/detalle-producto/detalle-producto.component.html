@@ -1,1 +1,17 @@
-<p>detalle-producto works!</p>
+<div class="container">
+    <div *ngIf="productoDetalle" [routerLink]="'/detalle/'+productoDetalle.id">
+      <img class="imagenproductoDetalleroducto" [src]="API_URL + productoDetalle.image" alt="foto de {{productoDetalle.name}}">
+      <p>{{ productoDetalle.name }}</p>
+      <p>{{ productoDetalle.description }}</p>
+      
+      <p *ngIf="productoDetalle.stock>0" class="HayStock">{{productoDetalle.price}}€</p>
+      <p *ngIf="productoDetalle.stock==0" class="NoStock">{{productoDetalle.price}}€</p>
+  </div>
+  <form [formGroup]="myForm">
+    <a>Cantidad: </a>
+    <input type="number" formControlName="cantidad" class="cantidad" min=1 value=1>
+    </form>
+  <div>
+    <button (click)="addCarrito()">Añadir al carrito</button>
+  </div>
+</div>

@@ -1,3 +1,6 @@
+.container{
+  display: flex;
+}
 .NoStock{
   color: red;
 }
@@ -6,4 +9,26 @@
 }
 .imagenProducto{
   width: 15vw;
+}
+.divBuscador{
+  width: 100%;
+  height: 5%;
+  background-color: rgb(219, 73, 73);
+  display: flex;
+  justify-content: space-between;
+}
+.buscador{
+  width: 30%;
+  border-radius: 4px;
+}
+.filtro{
+  width: 15%;
+}
+select {
+  font-family: Arial;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 10%;
 }

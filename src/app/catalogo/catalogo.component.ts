@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
+import { Product } from '../model/Product';
+import { ServicioService } from '../servicio.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -8,38 +10,43 @@ import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit{
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private servicioService: ServicioService) {
 
   }
   ngOnInit(): void {
-    this.getProducts()
+    this.servicioService.getProducts().then(products => {
+      this.listaMostrada = products;
+      this.listaProdcutos=this.listaMostrada;
+      this.ordenarNombre()
+    });
   }
+
   API_URL : string = 'https://localhost:7093/';
   listaProdcutos: Product[]=[];
-  
-  async getProducts() {
-    const formData = new FormData();
-    const options: any = {responseType:"text"};
+  listaMostrada: Product[]=[];
+  filtroNombre: string = '';
+  orden:boolean=false;
 
-    try{
-      const request$ = this.httpClient.get<Product[]>(`${this.API_URL}api/Product/productdetail/`);
-      const event: any = await lastValueFrom(request$);
-            //console.log(event);
-            
-            this.listaProdcutos=event;
-            console.log(this.listaProdcutos);
-
-    }catch(error){
-      alert('Está petando');
-      console.log(error)
-    } 
+  filtrarPorNombre(){
+    this.listaMostrada=this.listaProdcutos.filter((Product) =>
+    Product.name.toLowerCase().includes(this.filtroNombre.toLowerCase())
+    );
   }
-}
-interface Product{
-  description: string;
-  id:number;
-  image: string;
-  name: string;
-  price: number;
-  stock:number;
+  ordenarNombre(){
+    this.listaMostrada.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  ordenarPrecio(){
+    this.listaMostrada.sort((a,b)=>a.price-b.price)
+  }
+  aplicarFiltros(){
+    this.listaMostrada=this.listaProdcutos;
+    this.filtrarPorNombre();
+  }
+  ordenar(){
+    if(this.orden){
+      this.ordenarNombre()
+    }else{
+      this.ordenarPrecio()
+    }
+  }
 }

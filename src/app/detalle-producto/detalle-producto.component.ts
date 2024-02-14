@@ -1,49 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { Product } from '../model/Product';
 import { HttpClient } from '@angular/common/http';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-
+import { ServicioService } from '../servicio.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
   styleUrls: ['./detalle-producto.component.css']
 })
-export class DetalleProductoComponent implements OnInit {
-  httpClient: any;
-  API_URL: string = 'https://localhost:7093/';
-  constructor(
-        
-    private route: ActivatedRoute
+export class DetalleProductoComponent implements OnInit{
 
-    ){}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient,
+    private servicioService: ServicioService,
+    private formBuilder: FormBuilder
+    ) {
+      this.myForm = this.formBuilder.group({
+        cantidad: ['1',]
+      });
+  }
+  unsubs: Subscription | null = null;
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.params['id'];
-
-    if(id == this.getDetallesProductos.id){
-    this.getDetallesProductos();
-    }
-
-    throw new Error('Method not implemented.');
+    this.unsubs = this.activatedRoute.params.subscribe((data) => {
+      this.id = data['id'];
+      this.getProducto();
+    })
   }
 
-  listaDetalles:Producto[]=[];
+  API_URL : string = 'https://localhost:7093/';
+  productoDetalle: any;
+  id: number=0;
+  myForm: FormGroup;
+  idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
 
-  async getDetallesProductos(){
-    try{
-      const request$ = this.httpClient.get<Producto[]>(`${this.API_URL}api/Product/productdetail/`);
-      const event: any = await lastValueFrom(request$);
-            //console.log(event);
-            
-            this.listaDetalles=event;
-            console.log(this.listaDetalles);
-
-    }catch(error){
-      alert('Está petando');
+  getProducto(){
+    this.servicioService.getProducts().then(products => {
+      products=products.filter((Product) =>
+      Product.id==this.id
+      );
+      this.productoDetalle=products[0];
+    });
+  }
+  async addCarrito(){
+    const formData = new FormData();
+    const options: any = {responseType:"text"};
+    formData.append('productId', this.id.toString());
+    formData.append('userId', this.idUser);
+    formData.append('quantity', this.myForm.get('cantidad')?.value);
+    try {
+      const request$ = this.httpClient.post<string>(`${this.API_URL}api/ShoppingCart/addtoshopcart/`, formData);
+      var event: any = await lastValueFrom(request$);
+      alert("Producto añadido al carrito")
+    } catch (error) {
       console.log(error)
     }
   }
-
 }
 interface Producto{
   name:string;
