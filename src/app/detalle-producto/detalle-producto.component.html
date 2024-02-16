@@ -11,7 +11,7 @@
     <p>{{ productoDetalle.description }}</p>
     <h2 *ngIf="productoDetalle.stock>0" class="HayStock">{{productoDetalle.price}}€</h2>
     <h2 *ngIf="productoDetalle.stock==0" class="NoStock">{{productoDetalle.price}}€</h2>
-    <button>Añadir al carrito</button> <img class="cartimage" src="../../assets/images/addcart.png" alt="Añadir al carrito">
+    <button (click)="addCarrito()">Añadir al carrito</button> <img class="cartimage" src="../../assets/images/addcart.png" alt="Añadir al carrito">
   </div>
 </div>
 

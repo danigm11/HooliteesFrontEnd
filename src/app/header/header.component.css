@@ -60,7 +60,7 @@
 }
 
 .carrito::after {
-  content: "0";
+  content: var(--cantidad-en-carrito, "0");
   position: absolute;
   top: -5px;
   right: -5px;

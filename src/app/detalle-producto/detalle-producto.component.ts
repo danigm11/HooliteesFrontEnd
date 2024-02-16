@@ -60,11 +60,3 @@ export class DetalleProductoComponent implements OnInit{
     }
   }
 }
-interface Producto{
-  name:string;
-  id:number;
-  image:string;
-  description:string;
-  price:string;
-  stock:number;
-}
