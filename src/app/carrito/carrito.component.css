@@ -43,7 +43,11 @@ th {
   font-size: 18px;
 }
 .divConfirmar button img {
-  width: 180px;
+  width: 200px;
+}
+.divConfirmar button{
+  background: none;
+  border: none;
 }
 .botonEliminar button {
   margin-top: 5px;
