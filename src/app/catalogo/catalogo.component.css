@@ -31,8 +31,9 @@
   border-radius: 25px;
   padding: 10px;
   font-size: 16px;
-  background-color: #fff; /* Color blanco para el fondo */
+  background-color: #e62626; /* Color blanco para el fondo */
   color: #000000; /* Color de texto oscuro */
+  -webkit-text-fill-color: #fff;
 }
 
 .filtro {

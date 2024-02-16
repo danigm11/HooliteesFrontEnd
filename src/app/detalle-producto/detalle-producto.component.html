@@ -2,16 +2,19 @@
   <div>
     <img class="imagenproductoDetalle" [src]="API_URL + productoDetalle.image" alt="foto de {{productoDetalle.name}}">
   </div>
-  <form [formGroup]="myForm">
-    <a>Cantidad: </a>
-    <input type="number" formControlName="cantidad" class="cantidad" min=1 value=1>
-    </form>
+  
   <div>
     <h1>{{ productoDetalle.name }}</h1>
     <p>{{ productoDetalle.description }}</p>
     <h2 *ngIf="productoDetalle.stock>0" class="HayStock">{{productoDetalle.price}}€</h2>
     <h2 *ngIf="productoDetalle.stock==0" class="NoStock">{{productoDetalle.price}}€</h2>
-    <button (click)="addCarrito()">Añadir al carrito</button> <img class="cartimage" src="../../assets/images/addcart.png" alt="Añadir al carrito">
+    <div class="quantity">
+    <form [formGroup]="myForm">
+      <a>Cantidad: </a>
+      <input type="number" formControlName="cantidad" class="cantidad" min=1 value=1>
+      </form>
+    </div>
+    <button class="botonAñadir" (click)="addCarrito()"><img class="cartimage" src="../../assets/images/addcart.png" alt=""></button>
   </div>
 </div>
 

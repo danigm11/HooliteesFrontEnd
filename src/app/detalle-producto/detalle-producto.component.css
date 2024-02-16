@@ -25,4 +25,39 @@
  white-space: pre-line;
   margin: 0;
 }
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity input[type="number"] {
+  width: 30px;
+  padding: 8px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.quantity input[type="number"]:focus {
+  border-color: #e62626;
+  box-shadow: 0 0 5px #e62626;
+}
+
+.quantity input[type="number"]::-webkit-inner-spin-button,
+.quantity input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: scrollbarbutton-down;
+  margin: 0;
+}
+.botonAñadir {
+  padding: 10;
+}
+
+.botonAñadir img {
+  width: 50px;
+  height: auto;
+}
+
+
 

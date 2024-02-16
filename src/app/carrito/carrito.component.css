@@ -1,46 +1,79 @@
-.container{
+.container {
   display: flex;
+}
 
-}
-.listaCarrito{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 80%;
-}
-.cadaProducto{
-  border: solid 2px black;
+.listaCarrito {
   width: 100%;
-  height: 100%;
-  display: flex;
-}
-.item{
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.divConfirmar{
-  width: 20%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  border: solid 2px black;
-  border-radius: 100%;
-  height: fit-content;
+  margin: 20px;
 }
 
-.imagenProducto{
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid rgb(219, 73, 73);
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: rgb(219, 73, 73);
+}
+
+.imagenProducto {
+  width: 150px; 
+}
+
+.botonEliminar img{
+  width: 20px;
+  height: 20px;
+}
+
+.nombre {
+  font-weight: bold;
+}
+
+.cantidad {
+  width: 50px; 
+}
+
+.precioTotal {
+  font-size: 18px;
+}
+.divConfirmar button img {
+  width: 180px;
+}
+.botonEliminar button {
   margin-top: 5px;
-  width: 30%;
-  height: 50%;
-  border: 2px solid;
 }
-.cantidad{
-  width: 20%;
+
+.subtotal {
+  font-weight: bold;
 }
-.CantidadEliminar{
+.quantity {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+}
+
+.quantity input[type="number"] {
+  width: 30px;
+  padding: 8px;
+  border: 1px solid rgb(219, 73, 73);
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.quantity input[type="number"]:focus {
+  border-color: #e62626;
+  box-shadow: 0 0 5px #e62626;
+}
+
+.quantity input[type="number"]::-webkit-inner-spin-button,
+.quantity input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: scrollbarbutton-down;
+  margin: 0;
 }

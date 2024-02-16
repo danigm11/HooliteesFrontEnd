@@ -1,22 +1,38 @@
 <div class="container">
   <div class="listaCarrito">
-    <div *ngFor="let p of carritoUser; let i = index" class="cadaProducto">
-      <div class="item">
-        <img class="imagenProducto" [src]="API_URL + p.image" alt=""><br>
-        <b class="nombre">{{p.name}}</b>
-        <p class="precio">{{p.price}}€</p>
-        </div><div class="CantidadEliminar">
-          <div>
-        <a>Cantidad: </a>
-        <input type="number" (change)="actualizarCantidad(p.id, valoresSpinners[i])" class="cantidad" min="1" [(ngModel)]="valoresSpinners[i]">
-      </div>
-        <div class="botonEliminar">
-      <button (click)="eliminarProducto(p.id)">Eliminar</button>
-    </div></div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of carritoUser; let i = index" class="cadaProducto">
+          <td>
+            <img class="imagenProducto" [src]="API_URL + p.image" alt=""><br>
+            <b class="nombre">{{p.name}}</b>
+          </td>
+          <td class="precio">{{p.price}}€</td>
+          <td class="CantidadEliminar">
+            <div class="quantity">
+              <a>Cantidad: </a>
+              <input type="number" (change)="actualizarCantidad(p.id, valoresSpinners[i])" class="cantidad" min="1" [(ngModel)]="valoresSpinners[i]">
+            </div>
+          </td>
+          <td class="subtotal">{{p.price * valoresSpinners[i]}}€</td>
+          <td class="botonEliminar">
+            <button (click)="eliminarProducto(p.id)"><img src="../../assets/images/delete.png" alt="delete image"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="divConfirmar">
-    <p class="precioTotal">Total: {{precioTotal}}€</p>
-    <button>Confirmar</button>
+    <h1 class="precioTotal">Total: {{precioTotal}}€</h1>
+    <button><img src="../../assets/images/confirmarcompra.png" alt=""></button>
   </div>
 </div>
