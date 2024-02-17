@@ -87,8 +87,6 @@ export class CarritoComponent implements OnInit{
       formData.append('quantity', cantidad.toString());
       try {
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
-        /*setTimeout(() => {}, 1000000);
-        window.location.reload();*/
         this.reloadWindowAfterDelay();
         await lastValueFrom(request$);
 

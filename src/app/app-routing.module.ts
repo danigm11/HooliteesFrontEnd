@@ -7,6 +7,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
+import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'catalogo', component: CatalogoComponent},
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'detalle/:id', component: DetalleProductoComponent },
+  { path: 'confirmar', component: ConfirmarCompraComponent },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home' },
 ];

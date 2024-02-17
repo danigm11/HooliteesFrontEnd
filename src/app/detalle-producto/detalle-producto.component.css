@@ -57,6 +57,7 @@
 .botonAñadir img {
   width: 50px;
   height: auto;
+  cursor: pointer;
 }
 
 

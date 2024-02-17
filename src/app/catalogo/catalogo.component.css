@@ -15,6 +15,7 @@
 }
 .imagenProducto{
   width: 15vw;
+  cursor: pointer;
 }
 .divBuscador {
   width: 100%;
