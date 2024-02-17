@@ -1,1 +1,14 @@
-<p>confirmar-compra works!</p>
+<div class="container">
+    <div class="pago">
+    <p>Precio Total: {{(precioTotal).toFixed(2)}}€</p>
+    <p>{{(precioTotal).toFixed(2)}} ETH</p>
+    <button >Pagar</button> 
+     </div>
+  <div class="producto">
+    <div *ngFor="let p of carritoUser; let i = index" class="cadaProducto">
+        <img class="imagenProducto" [src]="API_URL + p.image" alt=""><br>
+        <p class="nombre"><b>{{p.name}}</b></p>
+        <p>Cantidad: <b>{{productosCarrito[i].quantity}}</b></p>
+      <a class="subtotal">Subtotal: <b>{{p.price * productosCarrito[i].quantity}}€</b></a>
+  </div>
+</div>
