@@ -32,7 +32,7 @@
     </table>
   </div>
   <div class="divConfirmar">
-    <h1 class="precioTotal">Total: {{precioTotal}}€</h1>
+    <h1 class="precioTotal">Total: {{(precioTotal).toFixed(2)}}€</h1>
     <button [routerLink]="'/confirmar/'"><img src="../../assets/images/confirmarcompra.png" alt=""></button>
   </div>
 </div>

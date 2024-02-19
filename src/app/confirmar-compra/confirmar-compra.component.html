@@ -2,7 +2,7 @@
     <div class="pago">
     <p>Precio Total: {{(precioTotal).toFixed(2)}}€</p>
     <p>{{(precioTotal).toFixed(2)}} ETH</p>
-    <button >Pagar</button> 
+    <button (click)="buyProducts()">Pagar</button> 
      </div>
   <div class="producto">
     <div *ngFor="let p of carritoUser; let i = index" class="cadaProducto">

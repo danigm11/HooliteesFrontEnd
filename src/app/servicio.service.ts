@@ -38,4 +38,11 @@ export class ServicioService {
       return [];
     }
   }
+
+   async post(url: string, data: any) : Promise<any> {
+    const headers = {'Content-Type': `application/json`};
+    let request$ =  this.httpClient.post(`${this.API_URL}${url}`, data, {headers});
+    
+    return await lastValueFrom(request$);
+  }
 }
