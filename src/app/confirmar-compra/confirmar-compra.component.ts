@@ -4,6 +4,7 @@ import { ProductCarrito } from '../model/ProductCarrito';
 import { Product } from '../model/Product';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -15,10 +16,16 @@ export class ConfirmarCompraComponent implements OnInit{
   ngOnInit(): void {
    this.getCarrito()
   }
-   constructor(private servicioService: ServicioService,private httpClient: HttpClient){
+   constructor(private servicioService: ServicioService,private formBuilder: FormBuilder,private httpClient: HttpClient){
+    this.myForm = this.formBuilder.group({
+      clientWallet: ['', Validators.required],
+      userId: ['', Validators.required],
+      totalPrice: ['',Validators.required]
+    });
 
  }
   API_URL : string = 'https://localhost:7093/';
+  myForm: FormGroup;
   productosCarrito: ProductCarrito[] = [];
   idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
   carritoUser: Product[]=[];
@@ -54,13 +61,25 @@ export class ConfirmarCompraComponent implements OnInit{
     });
   }
 
-  async buyProducts () {
+  async buyProducts() {
     const account = await this.getAccount();
-    let transaction = await this.servicioService.post(`buy/${this.productosCarrito}`, JSON.stringify(account)) as Transaction;
+    var accString = JSON.stringify(account);
+    accString = accString.replace(/['"]/g, '');
+    console.log(accString)
+    const formData = new FormData();
+    formData.append('clientWallet', accString);
+    formData.append('totalPrice', this.precioTotal.toString());
+    formData.append('userId', this.idUser);
 
+    //let transaction = await this.servicioService.post(`buyProducts`, JSON.stringify(account)) as Transaction;
+    //const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData,options);
+
+    //let transaction = await this.servicioService.post(`api/ConfirmOrder/buyProducts`, formData) as Transaction;
+    let request$ = await this.httpClient.post<Transaction>(`${this.API_URL}api/ConfirmOrder/buyProducts`, formData);
+    var transaction: any = await lastValueFrom(request$);
     console.log(transaction);
     
-    const txHash = await this.makeTransaction(transaction);
+    /*const txHash = await this.makeTransaction(transaction);
     const transactionSuccess = await this.servicioService.post(`check/${transaction.id}`, JSON.stringify(txHash));
 
     console.log('Transacción realizada: ' + transactionSuccess)
@@ -70,6 +89,7 @@ export class ConfirmarCompraComponent implements OnInit{
       :'Transacción fallida :(';
 
     console.log(transactionMessage)
+    console.log("Hola")*/
 
     /*this.dialog!.querySelector('p')!.innerText = transactionMessage;
     this.dialog!.showModal();*/
