@@ -79,7 +79,7 @@ export class ConfirmarCompraComponent implements OnInit{
     var transaction: any = await lastValueFrom(request$);
     console.log(transaction);
     
-    /*const txHash = await this.makeTransaction(transaction);
+    const txHash = await this.makeTransaction(transaction);
     const transactionSuccess = await this.servicioService.post(`check/${transaction.id}`, JSON.stringify(txHash));
 
     console.log('Transacción realizada: ' + transactionSuccess)
@@ -89,7 +89,7 @@ export class ConfirmarCompraComponent implements OnInit{
       :'Transacción fallida :(';
 
     console.log(transactionMessage)
-    console.log("Hola")*/
+    console.log("Hola")
 
     /*this.dialog!.querySelector('p')!.innerText = transactionMessage;
     this.dialog!.showModal();*/
