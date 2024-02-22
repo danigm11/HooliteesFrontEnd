@@ -1,4 +1,16 @@
-/* footer.component.css */
+@media screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+  }
+
+  .footer-logo img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px;
+    background-color: #fff;
+  }
+}
 
 footer {
     background-color: rgb(219, 73, 73);
