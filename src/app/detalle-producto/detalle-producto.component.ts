@@ -55,6 +55,7 @@ export class DetalleProductoComponent implements OnInit{
       const request$ = this.httpClient.post<string>(`${this.API_URL}api/ShoppingCart/addtoshopcart/`, formData);
       var event: any = await lastValueFrom(request$);
       alert("Producto añadido al carrito")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }

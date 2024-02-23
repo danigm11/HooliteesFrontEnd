@@ -84,12 +84,12 @@ export class ConfirmarCompraComponent implements OnInit{
 
     console.log('Transacción realizada: ' + transactionSuccess)
 
-    const transactionMessage = transactionSuccess
+    /*const transactionMessage = transactionSuccess
       ? 'Transacción realizada con éxito :D'
       :'Transacción fallida :(';
 
     console.log(transactionMessage)
-    console.log("Hola")
+    console.log("Hola")*/
 
     /*this.dialog!.querySelector('p')!.innerText = transactionMessage;
     this.dialog!.showModal();*/

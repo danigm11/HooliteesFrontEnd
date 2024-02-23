@@ -5,7 +5,7 @@
   <div class="box" [routerLink]="'/catalogo'">CATÁLOGO</div>
   <div class="box" [routerLink]="'/sobre-nosotros'">NOSOTROS</div>
     <div class="botones-header">
-      <div class="carrito" [ngStyle]="{ '--cantidad-en-carrito': cantidadEnCarrito }"><img class="cart-image" src="assets\images\cart.png" [routerLink]="'/carrito'"alt=""></div>
+      <div *ngIf="carritoLleno" class="bolita">&nbsp;&nbsp;&nbsp;&nbsp;</div><div class="carrito" [ngStyle]="{ '--cantidad-en-carrito': cantidadEnCarrito }"><img class="cart-image" src="assets\images\cart.png" [routerLink]="'/carrito'"alt=""></div>
       <div class="login"><img class="login-image" src="assets\images\user.png" [routerLink]="'/login'" alt=""></div>
     </div>
 </div>

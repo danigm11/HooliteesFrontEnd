@@ -45,4 +45,8 @@ export class ServicioService {
     
     return await lastValueFrom(request$);
   }
+
+  async getCantidadCarrito(id: number): Promise<number>{
+    return (await this.getProductosCarrito(id)).length
+  }
 }
