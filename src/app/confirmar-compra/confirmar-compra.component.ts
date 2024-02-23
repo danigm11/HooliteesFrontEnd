@@ -71,28 +71,21 @@ export class ConfirmarCompraComponent implements OnInit{
     formData.append('totalPrice', this.precioTotal.toString());
     formData.append('userId', this.idUser);
 
-    //let transaction = await this.servicioService.post(`buyProducts`, JSON.stringify(account)) as Transaction;
-    //const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/login/`, formData,options);
-
-    //let transaction = await this.servicioService.post(`api/ConfirmOrder/buyProducts`, formData) as Transaction;
     let request$ = await this.httpClient.post<Transaction>(`${this.API_URL}api/ConfirmOrder/buyProducts`, formData);
     var transaction: any = await lastValueFrom(request$);
     console.log(transaction);
     
     const txHash = await this.makeTransaction(transaction);
-    const transactionSuccess = await this.servicioService.post(`check/${transaction.id}`, JSON.stringify(txHash));
+    const transactionSuccess = await this.servicioService.post(`api/ConfirmOrder/check/${transaction.id}`, JSON.stringify(txHash));
 
     console.log('Transacción realizada: ' + transactionSuccess)
 
-    /*const transactionMessage = transactionSuccess
+    const transactionMessage = transactionSuccess
       ? 'Transacción realizada con éxito :D'
       :'Transacción fallida :(';
 
-    console.log(transactionMessage)
-    console.log("Hola")*/
-
-    /*this.dialog!.querySelector('p')!.innerText = transactionMessage;
-    this.dialog!.showModal();*/
+    alert(transactionMessage)
+    window.location.reload();
   }
 
   private async getAccount() : Promise<string> {
@@ -128,7 +121,7 @@ export class ConfirmarCompraComponent implements OnInit{
         }
       ]
     });
-
+    console.log(txHash)
     return txHash;
   }
 
