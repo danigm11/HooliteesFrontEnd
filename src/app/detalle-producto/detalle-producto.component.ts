@@ -57,7 +57,7 @@ export class DetalleProductoComponent implements OnInit{
       alert("Producto añadido al carrito")
       window.location.reload();
     } catch (error) {
-      console.log(error)
+      console.log(event)
     }
   }
 }

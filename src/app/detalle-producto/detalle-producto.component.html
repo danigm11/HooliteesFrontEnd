@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" *ngIf="productoDetalle">
   <div>
     <img class="imagenproductoDetalle" [src]="API_URL + productoDetalle.image" alt="foto de {{productoDetalle.name}}">
   </div>
   
-  <div>
+  <div *ngIf="productoDetalle">
     <h1>{{ productoDetalle.name }}</h1>
     <p>{{ productoDetalle.description }}</p>
     <h2 *ngIf="productoDetalle.stock>0" class="HayStock">{{productoDetalle.price}}€</h2>

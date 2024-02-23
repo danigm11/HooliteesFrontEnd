@@ -91,7 +91,7 @@ export class CarritoComponent implements OnInit{
         await lastValueFrom(request$);
 
       } catch (error) {
-        console.log(error);
+        
       }
     }
     reloadWindowAfterDelay() {
