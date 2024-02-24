@@ -8,6 +8,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'detalle/:id', component: DetalleProductoComponent },
   { path: 'confirmar', component: ConfirmarCompraComponent },
+  { path: 'perfil', component: PerfilComponent },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home' },
 ];

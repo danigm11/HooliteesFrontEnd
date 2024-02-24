@@ -13,9 +13,11 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCantidad()
+    this.getLogin()
   }
   cantidadEnCarrito: number=0;
   carritoLleno: boolean=false;
+  isLoggedIn: boolean= false;
 
   getCantidad(){
     this.servicio.getCantidadCarrito(1).then(cantidad => {
@@ -23,5 +25,13 @@ export class HeaderComponent implements OnInit{
     this.carritoLleno=this.cantidadEnCarrito>0;
 
   });
+  }
+  getLogin(){
+    let idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
+
+    if(idUser!=''){
+      this.isLoggedIn=true;
+    }
+    
   }
 }

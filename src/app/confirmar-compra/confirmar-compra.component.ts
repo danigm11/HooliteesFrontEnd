@@ -5,6 +5,7 @@ import { Product } from '../model/Product';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -16,7 +17,7 @@ export class ConfirmarCompraComponent implements OnInit{
   ngOnInit(): void {
    this.getCarrito()
   }
-   constructor(private servicioService: ServicioService,private formBuilder: FormBuilder,private httpClient: HttpClient){
+   constructor(private servicioService: ServicioService,private formBuilder: FormBuilder,private httpClient: HttpClient,private router : Router){
     this.myForm = this.formBuilder.group({
       clientWallet: ['', Validators.required],
       userId: ['', Validators.required],
@@ -85,6 +86,11 @@ export class ConfirmarCompraComponent implements OnInit{
       :'Transacción fallida :(';
 
     alert(transactionMessage)
+    if(transactionMessage=="Transacción realizada con éxito :D"){
+      this.router.navigate(['/catalogo']);
+    }else{
+
+    }
     window.location.reload();
   }
 

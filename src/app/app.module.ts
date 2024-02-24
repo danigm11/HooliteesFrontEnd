@@ -15,6 +15,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { FooterComponent } from './footer/footer.component';
 import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.co
     SobreNosotrosComponent,
     DetalleProductoComponent,
     FooterComponent,
-    ConfirmarCompraComponent
+    ConfirmarCompraComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
