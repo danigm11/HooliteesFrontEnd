@@ -86,7 +86,7 @@ export class ConfirmarCompraComponent implements OnInit{
       :'Transacción fallida :(';
 
     alert(transactionMessage)
-    if(transactionMessage=="Transacción realizada con éxito :D"){
+    if(transactionMessage=='Transacción realizada con éxito :D'){
       this.router.navigate(['/catalogo']);
     }else{
 
