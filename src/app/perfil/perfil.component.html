@@ -1,1 +1,21 @@
-<p>perfil works!</p>
+<h2 *ngIf="user">Perfil de {{user.name}}</h2>
+<div *ngIf="user" class="perfil">
+  <div class="datos">
+    <div class="subdatos">
+      <a><b>Nombre:</b> {{user.name}}</a>
+      <br>
+      <a><b>Email:</b> {{user.email}}</a>
+    </div>
+    <div class="subdatos">
+      <a><b>Dirección:</b> {{user.address}}</a>
+      <br>
+      <a><b>Rol:</b> admin</a>
+    </div>
+  </div>
+  <div >
+    <button class="boton-cambiar">Cambiar Datos</button>
+  </div>
+</div>
+<div class="listaPedidos">
+  Aquí va la lista de pedidos
+</div>

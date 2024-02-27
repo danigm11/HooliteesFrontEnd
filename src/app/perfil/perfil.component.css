@@ -1,0 +1,35 @@
+.perfil{
+  display: flex;
+  justify-content: space-around;
+}
+h2{
+  width: 100%;
+  text-align: center;
+}
+.datos{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+.subdatos{
+  display: flex;
+  flex-direction: column;
+}
+.boton-cambiar{
+  width: 30vw;
+  height: 7.5vh;
+  font-size: 3vh;
+  background-color: #2f3730;
+  color: white;
+  text-align: center;
+  border: 2px solid rgba(255, 0, 0, 0.352);
+  cursor: pointer;
+}
+.boton-cambiar:hover{
+  background-color: #000000;
+}
+.listaPedidos{
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
