@@ -1,3 +1,11 @@
+@media screen and (max-width: 768px) {
+  .listaCarrito {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
 .container {
   display: flex;
 }
