@@ -8,6 +8,7 @@ import { ProductPedido } from '../model/ProductPedido';
 import { Transaction } from '../model/Transaction';
 import { Product } from '../model/Product';
 import { Pedido } from '../model/Pedido';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +17,15 @@ import { Pedido } from '../model/Pedido';
 })
 export class PerfilComponent implements OnInit{
 
-  constructor(private router: Router, private servicio: ServicioService, private httpClient: HttpClient){}
+  constructor(private router: Router, private servicio: ServicioService, private httpClient: HttpClient, private formBuilder: FormBuilder){
+    this.myForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      direccion: ['', Validators.required],
+      password: ['',],
+      
+    });
+  }
 
   ngOnInit(): void {
 
@@ -29,16 +38,15 @@ export class PerfilComponent implements OnInit{
     }
   }
   idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
+  cambiarDatos: boolean=false;
   user: any;
   API_URL : string = 'https://localhost:7093/';
   listaPedidos: ProductPedido[]=[];
   listaTransactionId: string[]=[];
-
   listaPedidosconTodo: Pedido[]=[];
-
   listaProductosOrdenados: Product[][]=[];
-
   counter: number =0;
+  myForm: FormGroup;
 
   async getUser(){
     try{
@@ -107,6 +115,10 @@ export class PerfilComponent implements OnInit{
       });
     }
     this.listaProductosOrdenados.push(lista)
+  }
+
+  upload(){
+    alert("Cambios no guardados método por hacer 1 saludito")
   }
 
 }

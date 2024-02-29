@@ -13,8 +13,27 @@
     </div>
   </div>
   <div >
-    <button class="boton-cambiar">Cambiar Datos</button>
+    <button class="boton-cambiar" (click)="cambiarDatos=!cambiarDatos">Cambiar Datos</button>
   </div>
+</div>
+<br><br>
+<div *ngIf="cambiarDatos" class="perfil">
+  
+  <form class="form" [formGroup]="myForm">
+    <label for="nombre">Nombre:</label>
+    <input class="input" type="text" formControlName="nombre" placeholder="{{user.name}}">
+
+    <label for="email">Correo electrónico:</label>
+    <input class="input" type="email" formControlName="email" placeholder="{{user.email}}">
+
+    <label for="direccion">Dirección:</label>
+    <input class="input" type="text" formControlName="direccion" placeholder="{{user.address}}">
+
+    <label for="password">Nueva contraseña:</label>
+    <input class="input" type="password" formControlName="password">
+
+    <button class="boton-cambiar" type="submit" (click)="cambiarDatos=!cambiarDatos;upload()" [disabled]="myForm.invalid">Guardar cambios</button>
+  </form>
 </div>
 
 <div *ngIf="user">

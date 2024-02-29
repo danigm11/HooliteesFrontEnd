@@ -36,9 +36,27 @@ h2{
 .pedido{
   border: solid 3px black;
   display: flex;
+  width: 80%;
+  height: 20%;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .imagenProducto {
-  width: 10%; 
+  width: 25vh; 
   cursor: pointer;
+}
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 35vh;
+  width: 80%;
+
+}
+
+.input{
+  margin-bottom:1%;
 }
