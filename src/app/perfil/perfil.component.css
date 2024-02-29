@@ -33,3 +33,12 @@ h2{
   display: flex;
   justify-content: center;
 }
+.pedido{
+  border: solid 3px black;
+  display: flex;
+}
+
+.imagenProducto {
+  width: 10%; 
+  cursor: pointer;
+}

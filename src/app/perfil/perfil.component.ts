@@ -7,6 +7,7 @@ import { User } from '../model/User';
 import { ProductPedido } from '../model/ProductPedido';
 import { Transaction } from '../model/Transaction';
 import { Product } from '../model/Product';
+import { Pedido } from '../model/Pedido';
 
 @Component({
   selector: 'app-perfil',
@@ -32,8 +33,12 @@ export class PerfilComponent implements OnInit{
   API_URL : string = 'https://localhost:7093/';
   listaPedidos: ProductPedido[]=[];
   listaTransactionId: string[]=[];
-  listaProductospedidos:Product[]=[];
-  productoActual: any;
+
+  listaPedidosconTodo: Pedido[]=[];
+
+  listaProductosOrdenados: Product[][]=[];
+
+  counter: number =0;
 
   async getUser(){
     try{
@@ -56,10 +61,17 @@ export class PerfilComponent implements OnInit{
     listaTransactions=listaTransactions.filter((Transaction) =>
     Transaction.userId.toString()==this.idUser
        );
+    this.getPedidos()
+
     for(let t of listaTransactions){
+      let transaction = t;
+      let products = this.listaPedidos.filter((Product) =>
+      Product.ordersId==t.id
+    );
+      let pedidoConTodo : Pedido = { transaction, products }
+      this.listaPedidosconTodo.push(pedidoConTodo)
       this.listaTransactionId.push(t.id.toString())
     }
-    this.getPedidos()
   }
 
   async getPedidos(){
@@ -69,22 +81,32 @@ export class PerfilComponent implements OnInit{
     this.listaPedidos = this.listaPedidos.filter((Product) =>
       this.listaTransactionId.includes(Product.ordersId.toString())
     );
-    console.log(this.listaPedidos)
+    let idTransaccion: number =this.listaPedidos[0].ordersId;
     for(let p of this.listaPedidos){
-      this.getProducto(p.productsId)
+      if(idTransaccion!=p.ordersId){
+
+        this.getProductos(this.listaPedidosconTodo[this.counter].products)
+        idTransaccion=p.ordersId
+        this.counter++
+      }
+      this.listaPedidosconTodo[this.counter].products.push(p)
     }
-    console.log(this.listaProductospedidos)
+
   }
 
-  async getProducto(id: number){
-    this.servicio.getProducts().then(products => {
-      console.log(id)
-      products=products.filter((Product) =>
-      Product.id==id
-      );
-      console.log(products[0])
-      this.listaProductospedidos.push(products[0]);
-    });
+   async getProductos(listaPedidos: ProductPedido[]){
+
+    let lista: Product[]=[];
+    for(let p of listaPedidos){
+
+      this.servicio.getProducts().then(products => {
+        products=products.filter((Product) =>
+        Product.id==p.productsId
+        );
+        lista.push(products[0]);
+      });
+    }
+    this.listaProductosOrdenados.push(lista)
   }
 
 }

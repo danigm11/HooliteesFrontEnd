@@ -16,12 +16,15 @@
     <button class="boton-cambiar">Cambiar Datos</button>
   </div>
 </div>
+
 <div *ngIf="user">
-  <div class="listaPedidos" *ngFor="let p of listaProductospedidos">
-    <div *ngIf="p">
-      <p>{{p.name}}</p>
-      <p>{{p.price}}</p>
-      <img class="imagenProducto" [src]="API_URL + p.image" alt="foto de {{p.name}}">
+  <div class="listaPedidos" *ngFor="let p of listaProductosOrdenados; let i = index">
+    <div class="pedido" >
+      <div  *ngFor="let product of p">
+        <p>{{product.name}}</p>
+        <img [routerLink]="'/detalle/'+product.id" class="imagenProducto" [src]="API_URL + product.image" alt="foto de {{product.name}}">
+      </div>
+      <a >Total: {{listaPedidosconTodo[i].transaction.value}}</a>
     </div>
   </div>
 </div>
