@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Transaction } from '../model/Transaction';
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -86,12 +87,11 @@ export class ConfirmarCompraComponent implements OnInit{
       :'Transacción fallida :(';
 
     alert(transactionMessage)
-    if(transactionMessage=='Transacción realizada con éxito :D'){
-      this.router.navigate(['/catalogo']);
+    if(transactionSuccess){
+      this.router.navigate(['/']);
     }else{
 
     }
-    window.location.reload();
   }
 
   private async getAccount() : Promise<string> {
@@ -131,14 +131,6 @@ export class ConfirmarCompraComponent implements OnInit{
     return txHash;
   }
 
-}
-interface Transaction {
-  id: number,
-  from: string,
-  to: string,
-  value: string,
-  gas: string,
-  gasPrice: string
 }
 
 declare global {

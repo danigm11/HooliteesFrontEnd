@@ -16,6 +16,12 @@
     <button class="boton-cambiar">Cambiar Datos</button>
   </div>
 </div>
-<div class="listaPedidos">
-  Aquí va la lista de pedidos
+<div *ngIf="user">
+  <div class="listaPedidos" *ngFor="let p of listaProductospedidos">
+    <div *ngIf="p">
+      <p>{{p.name}}</p>
+      <p>{{p.price}}</p>
+      <img class="imagenProducto" [src]="API_URL + p.image" alt="foto de {{p.name}}">
+    </div>
+  </div>
 </div>

@@ -25,7 +25,7 @@ export class CatalogoComponent implements OnInit{
   listaProdcutos: Product[]=[];
   listaMostrada: Product[]=[];
   filtroNombre: string = '';
-  orden:boolean=false;
+  orden:number=0;
 
   filtrarPorNombre(){
     this.listaMostrada=this.listaProdcutos.filter((Product) =>
@@ -33,20 +33,34 @@ export class CatalogoComponent implements OnInit{
     );
   }
   ordenarNombre(){
-    this.listaMostrada.sort((a, b) => a.name.localeCompare(b.name));
+    this.listaMostrada.sort((a, b) => a.name.localeCompare(b.name))
   }
   ordenarPrecio(){
     this.listaMostrada.sort((a,b)=>a.price-b.price)
+  }
+  ordenarNombreDesc(){
+    this.listaMostrada.sort((a, b) => a.name.localeCompare(b.name))
+    this.listaMostrada.reverse()
+  }
+  ordenarPrecioDesc(){
+    this.listaMostrada.sort((a,b)=>a.price-b.price)
+    this.listaMostrada.reverse()
   }
   aplicarFiltros(){
     this.listaMostrada=this.listaProdcutos;
     this.filtrarPorNombre();
   }
-  ordenar(){
-    if(this.orden){
+  ordenar(event: Event) {
+    this.orden = Number((event.target as HTMLSelectElement).value);
+  
+    if(this.orden==0){
       this.ordenarNombre()
-    }else{
+    }else if(this.orden==1){
       this.ordenarPrecio()
+    }else if(this.orden==2){
+      this.ordenarNombreDesc()
+    }else{
+      this.ordenarPrecioDesc()
     }
   }
 }

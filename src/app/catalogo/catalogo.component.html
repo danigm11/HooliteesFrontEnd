@@ -1,10 +1,12 @@
 <div class="divBuscador">
 <input class="buscador" type="text" placeholder="🔍︎" [(ngModel)]="filtroNombre" (keyup)="aplicarFiltros()"/>
 
-  <select (change)="ordenar();orden=!orden">
-    <option value="A-Z" >A-Z</option>
-    <option value="€">€</option>
-  </select>
+<select (change)="ordenar($event)">
+  <option value="0" [ngValue]="0">A-Z</option>
+  <option value="2" [ngValue]="2">Z-A</option>
+  <option value="1" [ngValue]="1">€⭣</option>
+  <option value="3" [ngValue]="3">€⭡</option>
+</select>
 </div>
 <div class="container">
   <div *ngFor="let p of listaMostrada">
