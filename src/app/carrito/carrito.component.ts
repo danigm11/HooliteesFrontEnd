@@ -21,7 +21,7 @@ export class CarritoComponent implements OnInit{
       this.getCarrito();
     }
     myForm: FormGroup;
-
+    
     API_URL : string = 'https://localhost:7093/';
     productosCarrito: ProductCarrito[] = [];
     idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
@@ -44,10 +44,13 @@ export class CarritoComponent implements OnInit{
           );
           this.productosCarrito = products;
           for (let p of this.productosCarrito){
-            //console.log(p.productId);
+            console.log(p.productId);
+            this.getProductoLocal(p.productId);
             this.getProducto(p.productId);
             console.log()
           }
+          this.getProductoLocal(10);
+          this.getProductoLocal(1);
           console.log(this.productosCarrito)
         });
       } else {
@@ -94,11 +97,30 @@ export class CarritoComponent implements OnInit{
         console.log(error);
       }
     }
+
+    getProductoLocal(id: number) {
+      const key = 'productId' + id.toString();
+      const listaProducto = localStorage.getItem(key);
+      const cantidadLocal = localStorage.getItem('quantity' + id.toString());
+    
+      if (listaProducto && cantidadLocal) {
+        this.servicioService.getProducts().then(products => {
+          const product = products.find(product => product.id === id);
+          if (product) {
+            const cantidad = parseInt(cantidadLocal, 10);
+            this.carritoUser.push(product);
+            this.precioTotal += product.price * cantidad;
+            this.valoresSpinners.push(cantidad);
+          }
+        });
+      } else {
+        console.log('No se encontró ningún producto con la ID:', id);
+      }
+    }
+
     reloadWindowAfterDelay() {
       setTimeout(() => {
         window.location.reload();
       }, 1500);
     }
-    
-  
 }

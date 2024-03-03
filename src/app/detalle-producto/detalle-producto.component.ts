@@ -46,6 +46,15 @@ export class DetalleProductoComponent implements OnInit{
     });
   }
   async addCarrito(){
+    if (this.idUser == '') {
+          try {
+            localStorage.setItem('productId' + this.id.toString(), this.id.toString());
+            localStorage.setItem('quantity' + this.id.toString(), this.myForm.get('cantidad')?.value);
+            alert("Producto añadido al carrito")
+        }  catch (error) {
+            console.log(error)
+          }
+    } else {
     const formData = new FormData();
     const options: any = {responseType:"text"};
     formData.append('productId', this.id.toString());
@@ -58,5 +67,6 @@ export class DetalleProductoComponent implements OnInit{
     } catch (error) {
       console.log(error)
     }
+  }
   }
 }
