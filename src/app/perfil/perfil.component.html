@@ -32,7 +32,7 @@
     <label for="password">Nueva contraseña:</label>
     <input class="input" type="password" formControlName="password">
 
-    <button class="boton-cambiar" type="submit" (click)="cambiarDatos=!cambiarDatos;upload()" [disabled]="myForm.invalid">Guardar cambios</button>
+    <button class="boton-cambiar" type="submit" (click)="cambiarDatos=!cambiarDatos;upload();" [disabled]="myForm.invalid">Guardar cambios</button>
   </form>
 </div>
 

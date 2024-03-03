@@ -19,9 +19,9 @@ export class PerfilComponent implements OnInit{
 
   constructor(private router: Router, private servicio: ServicioService, private httpClient: HttpClient, private formBuilder: FormBuilder){
     this.myForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      direccion: ['', Validators.required],
+      nombre: ['',],
+      email: ['', ],
+      direccion: ['', ],
       password: ['',],
       
     });
@@ -92,7 +92,7 @@ export class PerfilComponent implements OnInit{
     let idTransaccion: number =this.listaPedidos[0].ordersId;
     for(let p of this.listaPedidos){
       if(idTransaccion!=p.ordersId){
-        
+
         this.getProductos(this.listaPedidosconTodo[this.counter].products)
         idTransaccion=p.ordersId
         this.counter++
@@ -118,8 +118,18 @@ export class PerfilComponent implements OnInit{
     this.listaProductosOrdenados.push(lista)
   }
 
-  upload(){
-    alert("Cambios no guardados método por hacer 1 saludito")
-  }
+  async upload() {
+    const formData = new FormData();
+    formData.append('name', this.myForm.get('nombre')?.value);
+    formData.append('email', this.myForm.get('email')?.value);
+    formData.append('password', this.myForm.get('password')?.value);
+    formData.append('address', this.myForm.get('direccion')?.value);
+    formData.append('userId', this.idUser);
+  
+    const request$ = this.httpClient.post<string>(`${this.API_URL}api/User/updateUser/`, formData);
+    await lastValueFrom(request$);
+    alert('Datos modificados.');
+    window.location.reload();
 
+  }
 }
