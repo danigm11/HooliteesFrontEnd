@@ -43,7 +43,9 @@ export class ConfirmarCompraComponent implements OnInit{
         this.productosCarrito = products;
         for (let p of this.productosCarrito){
           this.getProducto(p.productId);
-          this.getProductoLocal(p.productId);
+        }
+        for(this.counter = 1; this.counter <= 11;this.counter++){
+          this.getProductoLocal(this.counter);
         }
         console.log(this.productosCarrito)
       });
