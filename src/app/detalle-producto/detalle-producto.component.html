@@ -14,7 +14,8 @@
       <input type="number" formControlName="cantidad" max="{{productoDetalle.stock}}" class="cantidad" min=1 value=1>
       </form>
     </div>
-    <button class="botonAñadir" (click)="addCarrito()"><img class="cartimage" src="../../assets/images/addcart.png" alt=""></button>
+    <button *ngIf="productoDetalle.stock>0" class="botonAñadir" (click)="addCarrito()"><img class="cartimage" src="../../assets/images/addcart.png" alt=""></button>
+    <a *ngIf="productoDetalle.stock==0"> No hay stock</a>
   </div>
 </div>
 
