@@ -11,7 +11,7 @@
     <div class="quantity">
     <form [formGroup]="myForm">
       <a>Cantidad: </a>
-      <input type="number" formControlName="cantidad" class="cantidad" min=1 value=1>
+      <input type="number" formControlName="cantidad" max="{{productoDetalle.stock}}" class="cantidad" min=1 value=1>
       </form>
     </div>
     <button class="botonAñadir" (click)="addCarrito()"><img class="cartimage" src="../../assets/images/addcart.png" alt=""></button>

@@ -20,7 +20,7 @@
           <td class="CantidadEliminar">
             <div class="quantity">
               <a>Cantidad: </a>
-              <input type="number" (change)="actualizarCantidad(p.id, valoresSpinners[i])" class="cantidad" min="1" [(ngModel)]="valoresSpinners[i]">
+              <input type="number" (change)="actualizarCantidad(p.id, valoresSpinners[i])" class="cantidad" max="{{p.stock}}" min="1" [(ngModel)]="valoresSpinners[i]">
             </div>
           </td>
           <td class="subtotal">{{p.price * valoresSpinners[i]}}€</td>
