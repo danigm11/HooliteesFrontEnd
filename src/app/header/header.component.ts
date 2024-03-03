@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit{
   cantidadEnCarrito: number=0;
   carritoLleno: boolean=false;
   isLoggedIn: boolean= false;
+  isAdmin: boolean= false;
 
   getCantidad(){
     this.servicio.getCantidadCarrito(1).then(cantidad => {
@@ -26,12 +27,25 @@ export class HeaderComponent implements OnInit{
 
   });
   }
-  getLogin(){
-    let idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
+  async getLogin() {
+    let idUser = localStorage.getItem("ID") || sessionStorage.getItem("ID") || '';
 
-    if(idUser!=''){
-      this.isLoggedIn=true;
+    if (idUser !== '') {
+      this.isLoggedIn = true;
+
+      try {
+        const user = await this.servicio.getUserInfo(idUser);
+
+        if (user) {
+          this.isAdmin = user.isAdmin === true;
+          console.log('isLoggedIn:', this.isLoggedIn);
+          console.log('isAdmin:', this.isAdmin);
+        } else {
+          this.isAdmin = false;  
+        }
+      } catch (error) {
+        console.error('Error al obtener la información del usuario:', error);
+      }
     }
-    
   }
 }

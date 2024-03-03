@@ -45,8 +45,9 @@ export class LoginComponent {
       }else{
         this.setSession(event.stringToken,event.id);
       }
-      
-      this.router.navigate(['/']);
+      this.router.navigate(['/']).then(() => {
+        window.location.href = window.location.href;
+      });
     }catch(error){
       alert('E-mail o contraseña incorrecto/s');
     } 

@@ -1,0 +1,61 @@
+@media screen and (max-width: 768px) {
+    .user-list, .product-list {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid rgb(219, 73, 73);
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: rgb(219, 73, 73);
+  }
+
+  .imagenProducto {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto; 
+  }
+  
+  form {
+    max-width: 400px; 
+    margin: 0 auto; 
+  }
+  
+  label, input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  button img{
+    margin-bottom: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  button {
+    background: none;
+    border: none;
+  }
+  .new-product {
+    background-color: rgb(219, 73, 73); /* Cambia el color de fondo según tus preferencias */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }

@@ -3,6 +3,7 @@ import { Product } from './model/Product';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ProductCarrito } from './model/ProductCarrito';
+import { User } from './model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +50,10 @@ export class ServicioService {
   async getCantidadCarrito(id: number): Promise<number>{
     return (await this.getProductosCarrito(id)).length
   }
-}
+  
+  async getUserInfo(userId: string): Promise<User | null> {
+    
+      const request$ = this.httpClient.get<User>(`${this.API_URL}api/User/userinfo/${userId}`);
+      return await lastValueFrom(request$);
+    } 
+  }

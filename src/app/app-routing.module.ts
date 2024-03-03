@@ -9,6 +9,7 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'detalle/:id', component: DetalleProductoComponent },
   { path: 'confirmar', component: ConfirmarCompraComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'admin', component: AdminComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home' },
 ];
