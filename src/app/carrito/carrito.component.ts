@@ -46,14 +46,17 @@ export class CarritoComponent implements OnInit{
           for (let p of this.productosCarrito){
             console.log(p.productId);
             this.getProductoLocal(p.productId);
-            this.getProducto(p.productId);
             console.log()
           }
-          this.getProductoLocal(10);
-          this.getProductoLocal(1);
+          for(this.counter = 1; this.counter <= 11;this.counter++){
+            this.getProductoLocal(this.counter);
+          }
           console.log(this.productosCarrito)
         });
       } else {
+        for(this.counter = 1; this.counter <= 11;this.counter++){
+          this.getProductoLocal(this.counter);
+        }
         alert("Inicia sesión primero");
       }
     }
@@ -71,13 +74,15 @@ export class CarritoComponent implements OnInit{
     async eliminarProducto(idProducto:number){
       
       const formData = new FormData();
+      const key = 'productId' + idProducto.toString();
       formData.append('productId', idProducto.toString());
       formData.append('userId', this.idUser);
+      localStorage.removeItem(key);
+      localStorage.removeItem('quantity' + idProducto.toString());
       try {
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/eliminarproductocarrito/`, formData);
         window.location.reload();
         await lastValueFrom(request$);
-
       } catch (error) {
         console.log(error);
       }
@@ -88,6 +93,7 @@ export class CarritoComponent implements OnInit{
       formData.append('productId', idProducto.toString());
       formData.append('userId', this.idUser);
       formData.append('quantity', cantidad.toString());
+      localStorage.setItem('quantity' + idProducto.toString(), cantidad.toString())
       try {
         const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
         this.reloadWindowAfterDelay();
@@ -114,10 +120,36 @@ export class CarritoComponent implements OnInit{
           }
         });
       } else {
-        console.log('No se encontró ningún producto con la ID:', id);
+        //console.log('No se encontró ningún producto con la ID:', id);
       }
     }
 
+    async eliminarProductoLocal(idProducto:number){
+      const formData = new FormData();
+      const key = 'productId' + idProducto.toString();
+      formData.append('productId' + idProducto.toString(), idProducto.toString());
+      formData.append('userId', this.idUser);
+      try {
+        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/eliminarproductocarrito/`, formData);
+        window.location.reload();
+        await lastValueFrom(request$);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async actualizarCantidadLocal(idProducto:number,cantidad:number){
+      const formData = new FormData();
+      formData.append('productId' + idProducto.toString(), idProducto.toString());
+      formData.append('userId', this.idUser);
+      formData.append('quantity' + idProducto.toString(), cantidad.toString());
+      try {
+        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
+        this.reloadWindowAfterDelay();
+        await lastValueFrom(request$);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     reloadWindowAfterDelay() {
       setTimeout(() => {
         window.location.reload();
