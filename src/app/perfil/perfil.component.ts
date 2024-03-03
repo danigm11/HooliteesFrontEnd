@@ -92,13 +92,14 @@ export class PerfilComponent implements OnInit{
     let idTransaccion: number =this.listaPedidos[0].ordersId;
     for(let p of this.listaPedidos){
       if(idTransaccion!=p.ordersId){
-
+        
         this.getProductos(this.listaPedidosconTodo[this.counter].products)
         idTransaccion=p.ordersId
         this.counter++
       }
       this.listaPedidosconTodo[this.counter].products.push(p)
     }
+    this.getProductos(this.listaPedidosconTodo[this.counter].products)
 
   }
 

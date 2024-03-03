@@ -43,7 +43,10 @@
         <p>{{product.name}}</p>
         <img [routerLink]="'/detalle/'+product.id" class="imagenProducto" [src]="API_URL + product.image" alt="foto de {{product.name}}">
       </div>
-      <a >Total: {{listaPedidosconTodo[i].transaction.value}}</a>
+    </div>
+    <div>
+      <p >Total: {{listaPedidosconTodo[i].transaction.price.toFixed(2)}} €</p>
+    <a >Fecha: {{listaPedidosconTodo[i].transaction.fecha}}</a>
     </div>
   </div>
 </div>

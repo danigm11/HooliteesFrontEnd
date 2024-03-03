@@ -5,5 +5,7 @@ export interface Transaction {
   value: string,
   gas: string,
   gasPrice: string,
-  userId: string
+  userId: string,
+  price: number,
+  fecha: string
 }
