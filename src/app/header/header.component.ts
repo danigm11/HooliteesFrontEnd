@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit{
   cantidadEnCarrito: number=0;
   carritoLleno: boolean=false;
   isLoggedIn: boolean= false;
+  isAdmin: boolean= false;
 
   getCantidad(){
     this.servicio.getCantidadCarrito(1).then(cantidad => {
@@ -29,9 +30,14 @@ export class HeaderComponent implements OnInit{
   getLogin(){
     let idUser = localStorage.getItem("ID") ||sessionStorage.getItem("ID") || '';
 
-    if(idUser!=''){
-      this.isLoggedIn=true;
+    if (idUser !== '') {
+      this.isLoggedIn = true;
+
+    this.servicio.getUserInfo(idUser).then((user) => {
+      this.isAdmin = (user?.role === 1);
+      console.log('isLoggedIn:', this.isLoggedIn);
+      console.log('isAdmin:', this.isAdmin);
+    });
     }
-    
   }
 }

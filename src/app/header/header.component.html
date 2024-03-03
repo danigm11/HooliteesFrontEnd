@@ -7,5 +7,8 @@
     <div class="botones-header">
       <div *ngIf="carritoLleno" class="bolita">&nbsp;{{cantidadEnCarrito}}&nbsp;&nbsp;</div><div class="carrito" [ngStyle]="{ '--cantidad-en-carrito': cantidadEnCarrito }"><img class="cart-image" src="assets\images\cart.png" [routerLink]="'/carrito'"alt=""></div>
       <div class="login"><img *ngIf="!isLoggedIn" class="login-image" src="assets\images\user.png" [routerLink]="'/login'" alt=""><img *ngIf="isLoggedIn" class="login-image" src="assets\images\user.png" [routerLink]="'/perfil'" alt=""></div>
+      <div *ngIf="isLoggedIn" class="admin-button">
+        <img class="admin-image" src="assets\images\admin.png" [routerLink]="'/admin'" alt="">
+      </div>      
     </div>
 </div>

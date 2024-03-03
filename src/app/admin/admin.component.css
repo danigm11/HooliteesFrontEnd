@@ -1,0 +1,43 @@
+@media screen and (max-width: 768px) {
+    .user-list, .product-list {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid rgb(219, 73, 73);
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: rgb(219, 73, 73);
+  }
+
+  .imagenProducto {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto; 
+  }
+  
+  form {
+    max-width: 400px; 
+    margin: 0 auto; 
+  }
+  
+  label, input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-bottom: 20px;
+  }

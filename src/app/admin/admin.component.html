@@ -1,0 +1,88 @@
+<div class="container">
+  <!-- Lista de Usuarios -->
+  <div class="user-list">
+    <h1>Lista de Usuarios</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo Electrónico</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersList">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button (click)="deleteUser(user.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="product-list">
+    <h1>Lista de productos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Precio (€)</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productsList; let i = index">
+          <td>{{ product.id }}</td>
+          <td><img class="imagenProducto" [src]="API_URL + product.image" alt="foto de {{product.name}}"></td>
+          <td>
+            <input type="text" [(ngModel)]="product.name" />
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="product.price" />
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="product.stock" />
+          </td>
+          <td>
+            <button (click)="editProduct(product.id)">Modificar</button>
+          </td>
+          <td>
+            <button (click)="saveEditedProduct()" *ngIf="selectedProductId === product.id">Guardar cambios</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formulario para crear producto -->
+  <button (click)="toggleProductForm()">Crear Nuevo Producto</button>
+  <div *ngIf="showProductForm">
+    <h2>Crear Producto</h2>
+    <form [formGroup]="myForm" enctype="multipart/form-data">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" formControlName="name" required>
+
+      <label for="description">Descripción:</label>
+      <input type="text" id="description" formControlName="description" required>
+
+      <label for="price">Precio:</label>
+      <input type="number" id="price" formControlName="price" required>
+
+      <label for="stock">Stock:</label>
+      <input type="number" id="stock" formControlName="stock" required>
+
+      <label for="file">Imagen:</label>
+      <input type="file" id="file" (change)="onFileSelected($event)" formControlName="file">
+
+      <button type="button" (click)="createProduct()">Crear Producto</button>
+    </form>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import { DetalleProductoComponent } from './detalle-producto/detalle-producto.co
 import { FooterComponent } from './footer/footer.component';
 import { ConfirmarCompraComponent } from './confirmar-compra/confirmar-compra.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     DetalleProductoComponent,
     FooterComponent,
     ConfirmarCompraComponent,
-    PerfilComponent
+    PerfilComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
