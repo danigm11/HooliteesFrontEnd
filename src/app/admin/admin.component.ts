@@ -116,17 +116,22 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(userId: number): void {
-    this.httpClient.delete(`${this.API_URL}api/User/deleteUser/${userId}`)
-      .subscribe(
-        (response: any) => {
-          console.log('Usuario eliminado con éxito:', response);
-          this.getUsersList();
-        },
-        (error) => {
-          console.error('Error al eliminar el usuario:', error);
-        }
-      );
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este usuario?');
+  
+    if (confirmDelete) {
+      this.httpClient.delete(`${this.API_URL}api/User/deleteUser/${userId}`)
+        .subscribe(
+          (response: any) => {
+            console.log('Usuario eliminado con éxito:', response);
+            this.getUsersList();
+          },
+          (error) => {
+            console.error('Error al eliminar el usuario:', error);
+          }
+        );
+    }
   }
+  
 
   editProduct(productId: number): void {
     this.selectedProductId = productId;
