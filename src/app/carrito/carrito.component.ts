@@ -124,32 +124,6 @@ export class CarritoComponent implements OnInit{
       }
     }
 
-    async eliminarProductoLocal(idProducto:number){
-      const formData = new FormData();
-      const key = 'productId' + idProducto.toString();
-      formData.append('productId' + idProducto.toString(), idProducto.toString());
-      formData.append('userId', this.idUser);
-      try {
-        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/eliminarproductocarrito/`, formData);
-        window.location.reload();
-        await lastValueFrom(request$);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    async actualizarCantidadLocal(idProducto:number,cantidad:number){
-      const formData = new FormData();
-      formData.append('productId' + idProducto.toString(), idProducto.toString());
-      formData.append('userId', this.idUser);
-      formData.append('quantity' + idProducto.toString(), cantidad.toString());
-      try {
-        const request$ = this.httpClient.put<string>(`${this.API_URL}api/CartProduct/cambiarcantidad/`, formData);
-        this.reloadWindowAfterDelay();
-        await lastValueFrom(request$);
-      } catch (error) {
-        console.log(error);
-      }
-    }
     reloadWindowAfterDelay() {
       setTimeout(() => {
         window.location.reload();
