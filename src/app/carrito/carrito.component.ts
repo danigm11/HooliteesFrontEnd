@@ -45,11 +45,8 @@ export class CarritoComponent implements OnInit{
           this.productosCarrito = products;
           for (let p of this.productosCarrito){
             console.log(p.productId);
-            this.getProductoLocal(p.productId);
+            this.getProducto(p.productId);
             console.log()
-          }
-          for(this.counter = 1; this.counter <= 11;this.counter++){
-            this.getProductoLocal(this.counter);
           }
           console.log(this.productosCarrito)
         });
@@ -57,7 +54,6 @@ export class CarritoComponent implements OnInit{
         for(this.counter = 1; this.counter <= 11;this.counter++){
           this.getProductoLocal(this.counter);
         }
-        alert("Inicia sesión primero");
       }
     }
     getProducto(id:number){
