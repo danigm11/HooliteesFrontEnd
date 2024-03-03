@@ -21,6 +21,7 @@ export class AdminComponent implements OnInit {
   showProductForm: boolean = false;
   selectedProductId: number | null = null;
   selectedFile: File | undefined;
+  editingMode: boolean = false;
 
   constructor(
     private router: Router,
@@ -64,9 +65,6 @@ export class AdminComponent implements OnInit {
           console.log('Producto creado con éxito:', response);
           this.getProductList();
           this.myForm.reset();
-        },
-        (error) => {
-          console.error('Error al crear el producto:', error);
         }
       );
   }
@@ -96,9 +94,6 @@ export class AdminComponent implements OnInit {
       .subscribe(
         (data: User[]) => {
           this.usersList = data;
-        },
-        (error) => {
-          console.error('Error al obtener la lista de usuarios:', error);
         }
       );
   }
@@ -108,9 +103,6 @@ export class AdminComponent implements OnInit {
       .subscribe(
         (data: Product[]) => {
           this.productsList = data;
-        },
-        (error) => {
-          console.error('Error al obtener la lista de productos:', error);
         }
       );
   }
@@ -124,53 +116,68 @@ export class AdminComponent implements OnInit {
           (response: any) => {
             console.log('Usuario eliminado con éxito:', response);
             this.getUsersList();
-          },
-          (error) => {
-            console.error('Error al eliminar el usuario:', error);
           }
         );
     }
   }
   
-
-  editProduct(productId: number): void {
-    this.selectedProductId = productId;
-    const selectedProduct = this.productsList.find(product => product.id === productId);
-
-    if (selectedProduct) {
-      this.myForm.patchValue({
-        name: selectedProduct.name,
-        description: selectedProduct.description,
-        price: selectedProduct.price,
-        stock: selectedProduct.stock,
-      });
+  editOrSaveProduct(productId: number): void {
+    if (this.selectedProductId === null) {
+      this.selectedProductId = productId;
+      const selectedProduct = this.productsList.find(product => product.id === productId);
+  
+      if (selectedProduct) {
+        this.myForm.patchValue({
+          name: selectedProduct.name,
+          description: selectedProduct.description,
+          price: selectedProduct.price,
+          stock: selectedProduct.stock,
+        });
+      }
+    } else {
+      if (this.myForm.valid) {
+        const formData = new FormData();
+        formData.append('Name', this.myForm.get('name')?.value);
+        formData.append('Description', this.myForm.get('description')?.value);
+        formData.append('Price', this.myForm.get('price')?.value);
+        formData.append('Stock', this.myForm.get('stock')?.value);
+        formData.append('File', this.selectedFile!);
+  
+        this.httpClient.put(`${this.API_URL}api/Product/modifyProduct/${this.selectedProductId}`, formData)
+          .subscribe(
+            (response: any) => {
+              console.log('Producto modificado con éxito:', response);
+              this.getProductList();
+              this.myForm.reset();
+              this.selectedProductId = null;
+              alert('El producto ha sido editado con éxito');
+            }
+          );
+      }
     }
   }
+  
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0] as File;
+  }
+  onImageSelected(event: any, product: Product): void {
+    const file = event.target.files[0] as File;
+    this.selectedFile = file;
+  }
+  updateUserRole(userId: number, currentIsAdmin: boolean): void {
+    const confirmUpdate = window.confirm('¿Estás seguro de que deseas cambiar el rol de este usuario?');
 
-  saveEditedProduct(): void {
-    if (this.selectedProductId !== null && this.myForm.valid) {
-      const formData = new FormData();
-      formData.append('Name', this.myForm.get('name')?.value);
-      formData.append('Description', this.myForm.get('description')?.value);
-      formData.append('Price', this.myForm.get('price')?.value);
-      formData.append('Stock', this.myForm.get('stock')?.value);
-
-      this.httpClient.put(`${this.API_URL}api/Product/modifyProduct/${this.selectedProductId}`, formData)
+    if (confirmUpdate) {
+      this.httpClient.put(`${this.API_URL}api/User/updateUserRole/${userId}`, !currentIsAdmin)
         .subscribe(
           (response: any) => {
-            console.log('Producto modificado con éxito:', response);
-            this.getProductList();
-            this.myForm.reset();
-            this.selectedProductId = null;
-          },
-          (error) => {
-            console.error('Error al modificar el producto:', error);
+            console.log('Rol del usuario actualizado con éxito:', response);
+            this.getUsersList();
           }
         );
     }
   }
-
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] as File;
-  }
+  toggleEditingMode(): void {
+    this.editingMode = !this.editingMode;
+  } 
 }

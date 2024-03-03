@@ -3,5 +3,5 @@ export interface User{
   email: string;
   name: string;
   address: number;
-  role:number;
+  isAdmin: boolean;
 }
