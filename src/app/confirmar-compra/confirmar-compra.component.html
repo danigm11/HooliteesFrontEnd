@@ -1,7 +1,8 @@
 <div class="container">
     <div class="pago">
-    <p>Precio Total: {{(precioTotal).toFixed(2)}}€</p>
-    <p>{{(precioTotal).toFixed(2)}} ETH</p>
+    <p><b>Precio Total: {{(precioTotal).toFixed(2)}}€</b></p>
+    <p><b>{{conversion}} ETH</b></p>
+    <p>1 ETH = {{precioETH}}€</p>
     <button (click)="buyProducts()">Pagar</button> 
      </div>
   <div class="producto">

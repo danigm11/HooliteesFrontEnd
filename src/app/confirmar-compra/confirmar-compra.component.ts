@@ -3,7 +3,7 @@ import { ServicioService } from '../servicio.service';
 import { ProductCarrito } from '../model/ProductCarrito';
 import { Product } from '../model/Product';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Transaction } from '../model/Transaction';
@@ -17,6 +17,10 @@ export class ConfirmarCompraComponent implements OnInit{
 
   ngOnInit(): void {
    this.getCarrito()
+   /*setTimeout(() => {
+    this.getPrecio();
+  }, 120);*/
+   
   }
    constructor(private servicioService: ServicioService,private formBuilder: FormBuilder,private httpClient: HttpClient,private router : Router){
     this.myForm = this.formBuilder.group({
@@ -33,9 +37,11 @@ export class ConfirmarCompraComponent implements OnInit{
   carritoUser: Product[]=[];
   valoresSpinners:number[]=[];
   precioTotal:number=0;
+  precioETH: number=0;
   counter:number=0;
+  conversion: number=0;
 
-  getCarrito() {
+  async getCarrito() {
     if (this.idUser) {
       const userId = Number.parseInt(this.idUser);
       this.servicioService.getProductosCarrito(userId).then(products => {
@@ -45,7 +51,11 @@ export class ConfirmarCompraComponent implements OnInit{
         this.productosCarrito = products;
         for (let p of this.productosCarrito){
           this.getProducto(p.productId);
+          /*if(p==this.productosCarrito[this.productosCarrito.length-1]){
+            this.getPrecio();
+          }*/
         }
+        this.getPrecio();
         console.log(this.productosCarrito)
       });
     } else {
@@ -129,6 +139,23 @@ export class ConfirmarCompraComponent implements OnInit{
     });
     console.log(txHash)
     return txHash;
+  }
+
+  async getPrecio(){
+    const formData = new FormData();
+    formData.append('totalPrice', this.precioTotal.toString());
+
+    let request$ = await this.httpClient.post<number>(`${this.API_URL}api/ConfirmOrder/precioETH`, formData);
+
+    this.precioETH = await lastValueFrom(request$);
+    console.log(lastValueFrom(request$))
+
+    this.calcularConversion(this.precioTotal,this.precioETH);
+
+  }
+
+  calcularConversion(eur: number, eth: number){
+    this.conversion= eur/eth
   }
 
 }
