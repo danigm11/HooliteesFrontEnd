@@ -72,7 +72,23 @@ export class ConfirmarCompraComponent implements OnInit{
       this.counter++;
     });
   }
-
+  getProductoLocal(id: number) {
+    const key = 'productId' + id.toString();
+    const listaProducto = localStorage.getItem(key);
+    const cantidadLocal = localStorage.getItem('quantity' + id.toString());
+    if (listaProducto && cantidadLocal) {
+      this.servicioService.getProducts().then(products => {
+        const product = products.find(product => product.id == id);
+        if (product) {
+          const cantidad = parseInt(cantidadLocal, 10);
+          this.carritoUser.push(product);
+          this.precioTotal += product.price * cantidad;
+        }
+      });
+    } else {
+      console.log('No se encontró ningún producto con la ID:', id);
+    }
+  }
   async buyProducts() {
     const account = await this.getAccount();
     var accString = JSON.stringify(account);
