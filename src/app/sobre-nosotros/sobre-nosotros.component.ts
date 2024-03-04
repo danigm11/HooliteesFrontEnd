@@ -10,22 +10,22 @@ export class SobreNosotrosComponent {
     {
       name: 'Daniel García Mesa',
       description: 'Soy una persona resolutiva y trabajadora, creo que puedo aportar organización, ética de trabajo y ayuda al equipo con los problemas que puedan surgir, me siento capacitado para liderar este proyecto gracias a la confianza que noto en mí por parte de mis compañeros.',
-      image: '../../assets/images/user.png'
+      image: '../../assets/images/dani.jpg'
     },
     {
       name: 'Jorge Reina Romero',
       description: 'Soy una persona cooperativa y que le gusta trabajar en equipo, me gusta realizar mis trabajos a tiempo y siempre compartir o preguntar a mis compañeros sobre dudas o nuevas ideas.',
-      image: '../../assets/images/user.png'
+      image: '../../assets/images/jorge.jpg'
     },
     {
       name: 'Miguel Blanco Fernández',
       description: 'Soy una persona trabajadora y constante, a pesar de mi aparente falta de acción, soy bastante energético y diligente con los trabajos que se me asignan y trabajo bastante bien en equipo.',
-      image: '../../assets/images/user.png'
+      image: '../../assets/images/miguel.jpg'
     },
     {
       name: 'Oscar Mateo Martín',
       description: 'Soy una persona responsable y proactiva, creo que puedo aportar al equipo todo lo que sea necesario para sacar adelante el proyecto y me gusta cooperar con mis compañeros.',
-      image: '../../assets/images/user.png'
+      image: '../../assets/images/oscar.jpg'
     }
   ];
   missionVisionValues = {
