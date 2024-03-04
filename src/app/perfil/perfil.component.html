@@ -9,7 +9,7 @@
     <div class="subdatos">
       <a><b>Dirección:</b> {{user.address}}</a>
       <br>
-      <a><b>Rol:</b> admin</a>
+      <a *ngIf="user.isAdmin"><b>Rol:</b> Administrador</a>
     </div>
   </div>
   <div >
