@@ -60,6 +60,7 @@ export class ConfirmarCompraComponent implements OnInit{
       });
     } else {
       alert("Inicia sesión primero");
+      this.router.navigate(['/login']);
     }
   }
   getProducto(id:number){
